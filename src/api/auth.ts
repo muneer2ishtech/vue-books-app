@@ -1,6 +1,6 @@
 import { http } from './http';
 
-export function signin(payload: { username: string; password: string }) {
+export function signin(payload: { email: string; password: string }) {
   return http.post<{ token_type: string; access_token: string }>('/api/v1/auth/signin', payload);
 }
 

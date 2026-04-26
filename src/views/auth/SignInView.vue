@@ -4,7 +4,7 @@
       <h1 class="text-xl font-semibold">{{ $t('signin') }}</h1>
       <div>
         <label class="block mb-1">{{ $t('email') }}</label>
-        <input v-model.trim="username" type="email" class="w-full rounded border-app bg-white/5" />
+        <input v-model.trim="email" type="email" class="w-full rounded border-app bg-white/5" />
       </div>
       <div>
         <label class="block mb-1">{{ $t('password') }}</label>
@@ -31,14 +31,14 @@ import { getApiErrorMessage } from '@/utils/error';
 const router = useRouter();
 const auth = useAuthStore();
 const { t } = useI18n();
-const username = ref('');
+const email = ref('');
 const password = ref('');
 const show = ref(false);
 
 async function onSubmit() {
-  if (!username.value || !password.value) return alert(t('allFieldsRequired'));
+  if (!email.value || !password.value) return alert(t('allFieldsRequired'));
   try {
-    const res = await signin({ username: username.value, password: password.value });
+    const res = await signin({ email: email.value, password: password.value });
     auth.setToken(res.data.access_token);
     alert(t('signInSuccess'));
     await router.replace('/home');
