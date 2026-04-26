@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 248 250 252;
+  --panel: 255 255 255;
+  --muted: 71 85 105;
+  --text: 15 23 42;
+  --border: 203 213 225;
+  --accent: 37 99 235;
+}
+
+.dark {
+  --bg: 15 23 42;
+  --panel: 30 41 59;
+  --muted: 148 163 184;
+  --text: 226 232 240;
+  --border: 71 85 105;
+  --accent: 96 165 250;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--bg));
+  color: rgb(var(--text));
+}
+
+.bg-app {
+  background: rgb(var(--bg));
+}
+.bg-panel {
+  background: rgb(var(--panel));
+}
+.text-app {
+  color: rgb(var(--text));
+}
+.text-muted {
+  color: rgb(var(--muted));
+}
+.border-app {
+  border-color: rgb(var(--border));
+}
