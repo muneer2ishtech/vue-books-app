@@ -27,9 +27,11 @@ import { useI18n } from 'vue-i18n';
 import AuthShell from '@/components/layout/AuthShell.vue';
 import { signup } from '@/api/auth';
 import { getApiErrorMessage } from '@/utils/error';
+import { useAlertsStore } from '@/stores/alerts';
 
 const router = useRouter();
 const { locale, t } = useI18n();
+const alerts = useAlertsStore();
 const show1 = ref(false);
 const show2 = ref(false);
 const form = reactive({
@@ -44,10 +46,10 @@ const form = reactive({
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s\t]{8,}$/;
 
 async function onSubmit() {
-  if (!form.firstName || !form.lastName || !form.email) return alert(t('missingRequiredFields'));
-  if (!passwordRegex.test(form.password)) return alert(t('passwordRulesFailed'));
-  if (form.password !== form.passwordConfirm) return alert(t('passwordsMustMatch'));
-  if (!form.acceptTermsConditions) return alert(t('acceptTermsFirst'));
+  if (!form.firstName || !form.lastName || !form.email) return alerts.push('error', t('missingRequiredFields'));
+  if (!passwordRegex.test(form.password)) return alerts.push('error', t('passwordRulesFailed'));
+  if (form.password !== form.passwordConfirm) return alerts.push('error', t('passwordsMustMatch'));
+  if (!form.acceptTermsConditions) return alerts.push('error', t('acceptTermsFirst'));
   try {
     await signup({
       ...form,
@@ -56,10 +58,10 @@ async function onSubmit() {
       email: form.email.trim(),
       lang: String(locale.value || 'en')
     });
-    alert(t('signupSuccess'));
+    alerts.push('success', t('signupSuccess'));
     await router.replace('/signin');
   } catch (error) {
-    alert(getApiErrorMessage(error));
+    alerts.push('error', getApiErrorMessage(error));
   }
 }
 </script>

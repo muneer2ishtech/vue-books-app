@@ -20,6 +20,10 @@ export default {
     acceptTermsFirst: 'Accept terms first',
     signInSuccess: 'Sign in successful',
     signupSuccess: 'Signup successful',
+    unauthorized: 'Unauthorized',
+    forbidden: 'Forbidden',
+    notImplemented: 'Not Implemented',
+    signInFailed: 'Invalid email or password',
     logout: 'Logout',
     profile: 'My Profile',
     notFound: 'Page not found'
@@ -45,6 +49,10 @@ export default {
     acceptTermsFirst: 'Hyvaksy ehdot ensin',
     signInSuccess: 'Kirjautuminen onnistui',
     signupSuccess: 'Rekisterointi onnistui',
+    unauthorized: 'Ei valtuutusta',
+    forbidden: 'Paatty estetty',
+    notImplemented: 'Ei toteutettu',
+    signInFailed: 'Vaarat tunnukset',
     logout: 'Kirjaudu ulos',
     profile: 'Profiili',
     notFound: 'Sivua ei loytynyt'

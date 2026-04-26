@@ -15,6 +15,9 @@
       </div>
       <button class="w-full rounded bg-blue-600 text-white py-2">{{ $t('signin') }}</button>
       <RouterLink to="/signup" class="underline text-sm block">{{ $t('createAccount') }}</RouterLink>
+      <p v-if="formError" class="rounded border border-red-400 bg-red-100 px-3 py-2 text-sm text-red-900">
+        {{ formError }}
+      </p>
     </form>
   </AuthShell>
 </template>
@@ -27,23 +30,34 @@ import AuthShell from '@/components/layout/AuthShell.vue';
 import { signin } from '@/api/auth';
 import { useAuthStore } from '@/stores/auth';
 import { getApiErrorMessage } from '@/utils/error';
+import { useAlertsStore } from '@/stores/alerts';
 
 const router = useRouter();
 const auth = useAuthStore();
 const { t } = useI18n();
+const alerts = useAlertsStore();
 const email = ref('');
 const password = ref('');
 const show = ref(false);
+const formError = ref('');
 
 async function onSubmit() {
-  if (!email.value || !password.value) return alert(t('allFieldsRequired'));
+  formError.value = '';
+  if (!email.value || !password.value) {
+    formError.value = t('allFieldsRequired');
+    return;
+  }
   try {
     const res = await signin({ email: email.value, password: password.value });
     auth.setToken(res.data.access_token);
-    alert(t('signInSuccess'));
+    alerts.push('success', t('signInSuccess'));
     await router.replace('/home');
-  } catch (error) {
-    alert(getApiErrorMessage(error));
+  } catch (error: any) {
+    if (error?.response?.status === 401) {
+      formError.value = error?.response?.data?.message || t('signInFailed');
+      return;
+    }
+    alerts.push('error', getApiErrorMessage(error));
   }
 }
 </script>

@@ -23,9 +23,11 @@ import { computed, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getBook, updateBook } from '@/api/books';
 import { getApiErrorMessage } from '@/utils/error';
+import { useAlertsStore } from '@/stores/alerts';
 
 const route = useRoute();
 const router = useRouter();
+const alerts = useAlertsStore();
 const loaded = ref(false);
 const yearNow = new Date().getFullYear();
 const form = reactive({
@@ -83,10 +85,10 @@ async function onSubmit() {
       isActive: form.isActive,
       description: form.description.trim()
     });
-    alert('Book updated successfully');
+    alerts.push('success', 'Book updated successfully');
     await router.replace(`/books/${route.params.id}`);
   } catch (error) {
-    alert(getApiErrorMessage(error));
+    alerts.push('error', getApiErrorMessage(error));
   }
 }
 </script>

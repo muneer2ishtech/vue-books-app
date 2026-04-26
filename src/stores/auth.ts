@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import type { JwtPayload } from '@/types';
 import { buildPreferences, decodeJwt, normalizeRoles } from '@/utils/jwt';
+import { useAlertsStore } from './alerts';
 
 const TOKEN_KEY = 'access_token';
 const PREFS_KEY = 'user_preferences';
@@ -39,7 +40,7 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem(TOKEN_KEY);
       localStorage.removeItem(PREFS_KEY);
       sessionStorage.clear();
-      if (notify) alert('Signed out');
+      if (notify) useAlertsStore().push('info', 'Signed out');
     }
   }
 });

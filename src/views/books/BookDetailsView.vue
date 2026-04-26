@@ -22,9 +22,11 @@ import type { Book } from '@/types';
 import { deleteBook, getBook } from '@/api/books';
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue';
 import { getApiErrorMessage } from '@/utils/error';
+import { useAlertsStore } from '@/stores/alerts';
 
 const route = useRoute();
 const router = useRouter();
+const alerts = useAlertsStore();
 const open = ref(false);
 const book = ref<Book | null>(null);
 
@@ -38,16 +40,16 @@ async function onDelete() {
   try {
     const res = await deleteBook(String(route.params.id));
     if ([200, 204, 410].includes(res.status)) {
-      alert('Book deleted successfully');
+      alerts.push('success', 'Book deleted successfully');
       await router.replace('/books');
     }
   } catch (error: any) {
     if (error?.response?.status === 410) {
-      alert('Book deleted successfully');
+      alerts.push('success', 'Book deleted successfully');
       await router.replace('/books');
       return;
     }
-    alert(getApiErrorMessage(error));
+    alerts.push('error', getApiErrorMessage(error));
   }
 }
 </script>

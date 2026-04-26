@@ -21,8 +21,10 @@ import { computed, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { createBook } from '@/api/books';
 import { getApiErrorMessage } from '@/utils/error';
+import { useAlertsStore } from '@/stores/alerts';
 
 const router = useRouter();
+const alerts = useAlertsStore();
 const yearNow = new Date().getFullYear();
 const initial = { title: '', author: '', year: yearNow, description: '' };
 const form = reactive({ ...initial });
@@ -61,12 +63,12 @@ async function onSubmit() {
       price: Number(priceText.value),
       description: form.description.trim()
     });
-    alert('Book created successfully');
+    alerts.push('success', 'Book created successfully');
     const location = res.headers.location as string | undefined;
     const id = location?.match(/\/(\d+)$/)?.[1];
     await router.replace(id ? `/books/${id}` : '/books');
   } catch (error) {
-    alert(getApiErrorMessage(error));
+    alerts.push('error', getApiErrorMessage(error));
   }
 }
 </script>

@@ -79,8 +79,10 @@ import type { Book } from '@/types';
 import { deleteBook, listBooks } from '@/api/books';
 import { getApiErrorMessage } from '@/utils/error';
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue';
+import { useAlertsStore } from '@/stores/alerts';
 
 const books = ref<Book[]>([]);
+const alerts = useAlertsStore();
 const page = ref(0);
 const size = ref(10);
 const totalPages = ref(0);
@@ -137,18 +139,18 @@ async function confirmDelete() {
   try {
     const response = await deleteBook(pendingDeleteId.value);
     if ([200, 204, 410].includes(response.status)) {
-      alert('Book deleted successfully');
+      alerts.push('success', 'Book deleted successfully');
       confirmOpen.value = false;
       await loadBooks();
     }
   } catch (error: any) {
     if (error?.response?.status === 410) {
-      alert('Book deleted successfully');
+      alerts.push('success', 'Book deleted successfully');
       confirmOpen.value = false;
       await loadBooks();
       return;
     }
-    alert(getApiErrorMessage(error));
+    alerts.push('error', getApiErrorMessage(error));
   }
 }
 </script>
