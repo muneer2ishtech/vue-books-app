@@ -2,20 +2,20 @@
   <AuthShell>
     <form class="w-full max-w-md bg-panel border border-app rounded p-5 space-y-3" @submit.prevent="onSubmit">
       <h1 class="text-xl font-semibold">{{ $t('signup') }}</h1>
-      <input v-model.trim="form.firstName" placeholder="First Name" class="w-full rounded border-app bg-white/5" />
-      <input v-model.trim="form.lastName" placeholder="Last Name" class="w-full rounded border-app bg-white/5" />
-      <input v-model.trim="form.email" type="email" placeholder="Email" class="w-full rounded border-app bg-white/5" />
+      <input v-model.trim="form.firstName" :placeholder="$t('firstName')" class="w-full rounded border-app bg-white/5" />
+      <input v-model.trim="form.lastName" :placeholder="$t('lastName')" class="w-full rounded border-app bg-white/5" />
+      <input v-model.trim="form.email" type="email" :placeholder="$t('email')" class="w-full rounded border-app bg-white/5" />
       <div class="flex gap-2">
-        <input v-model="form.password" :type="show1 ? 'text' : 'password'" placeholder="Password" class="flex-1 rounded border-app bg-white/5" />
+        <input v-model="form.password" :type="show1 ? 'text' : 'password'" :placeholder="$t('password')" class="flex-1 rounded border-app bg-white/5" />
         <button type="button" class="border border-app rounded px-2" @click="show1 = !show1">👁</button>
       </div>
       <div class="flex gap-2">
-        <input v-model="form.passwordConfirm" :type="show2 ? 'text' : 'password'" placeholder="Confirm Password" class="flex-1 rounded border-app bg-white/5" />
+        <input v-model="form.passwordConfirm" :type="show2 ? 'text' : 'password'" :placeholder="$t('confirmPassword')" class="flex-1 rounded border-app bg-white/5" />
         <button type="button" class="border border-app rounded px-2" @click="show2 = !show2">👁</button>
       </div>
-      <label class="flex items-center gap-2"><input v-model="form.acceptTermsConditions" type="checkbox" /> I accept terms</label>
-      <button class="w-full rounded bg-blue-600 text-white py-2">Sign Up</button>
-      <RouterLink to="/signin" class="underline text-sm block">Back to sign in</RouterLink>
+      <label class="flex items-center gap-2"><input v-model="form.acceptTermsConditions" type="checkbox" /> {{ $t('acceptTerms') }}</label>
+      <button class="w-full rounded bg-blue-600 text-white py-2">{{ $t('signup') }}</button>
+      <RouterLink to="/signin" class="underline text-sm block">{{ $t('backToSignIn') }}</RouterLink>
     </form>
   </AuthShell>
 </template>
@@ -29,7 +29,7 @@ import { signup } from '@/api/auth';
 import { getApiErrorMessage } from '@/utils/error';
 
 const router = useRouter();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const show1 = ref(false);
 const show2 = ref(false);
 const form = reactive({
@@ -44,10 +44,10 @@ const form = reactive({
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s\t]{8,}$/;
 
 async function onSubmit() {
-  if (!form.firstName || !form.lastName || !form.email) return alert('Missing required fields');
-  if (!passwordRegex.test(form.password)) return alert('Password does not match rules');
-  if (form.password !== form.passwordConfirm) return alert('Passwords must match');
-  if (!form.acceptTermsConditions) return alert('Accept terms first');
+  if (!form.firstName || !form.lastName || !form.email) return alert(t('missingRequiredFields'));
+  if (!passwordRegex.test(form.password)) return alert(t('passwordRulesFailed'));
+  if (form.password !== form.passwordConfirm) return alert(t('passwordsMustMatch'));
+  if (!form.acceptTermsConditions) return alert(t('acceptTermsFirst'));
   try {
     await signup({
       ...form,
@@ -56,7 +56,7 @@ async function onSubmit() {
       email: form.email.trim(),
       lang: String(locale.value || 'en')
     });
-    alert('Signup successful');
+    alert(t('signupSuccess'));
     await router.replace('/signin');
   } catch (error) {
     alert(getApiErrorMessage(error));

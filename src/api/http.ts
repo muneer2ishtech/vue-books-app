@@ -41,6 +41,10 @@ http.interceptors.response.use(
       alert(message || 'Internal server error');
       return Promise.reject(error);
     }
+    if (status === 400) {
+      alert(message);
+      return Promise.reject(error);
+    }
     if (status && status >= 400 && status !== 410) {
       await router.replace({ path: '/error', query: { code: `${status}`, message } });
     }
