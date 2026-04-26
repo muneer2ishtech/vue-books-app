@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import type { JwtPayload } from '@/types';
-import { buildPreferences, decodeJwt, normalizeRoles } from '@/utils/jwt';
+import { buildPreferences, decodeJwt, normalizeEpochToMs, normalizeRoles } from '@/utils/jwt';
 import { useAlertsStore } from './alerts';
 
 const TOKEN_KEY = 'access_token';
@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', {
     init() {
       if (!this.token) return;
       const payload = decodeJwt(this.token);
-      if (!payload || Date.now() >= payload.exp) {
+      if (!payload || Date.now() >= normalizeEpochToMs(payload.exp)) {
         this.logout(false);
         return;
       }

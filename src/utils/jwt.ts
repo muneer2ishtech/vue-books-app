@@ -35,3 +35,9 @@ export function buildPreferences(payload: JwtPayload | null): UserPreferences {
     ...(typeof ui.navbarCollapsed === 'boolean' ? { navbarCollapsed: ui.navbarCollapsed } : {})
   };
 }
+
+export function normalizeEpochToMs(epoch: number | undefined | null): number {
+  if (typeof epoch !== 'number' || !Number.isInteger(epoch) || epoch <= 0) return 0;
+  // JWT iat/exp are epoch in seconds.
+  return epoch * 1000;
+}
