@@ -4,10 +4,20 @@
       :style="{ width: ui.navbarCollapsed ? '80px' : '256px' }">
       <div class="h-[60px] border-b border-app px-3 flex items-center justify-between">
         <AppLogo :show-title="!ui.navbarCollapsed" />
-        <button class="border border-app rounded px-2 py-1" @click="toggleNav" :aria-label="ui.navbarCollapsed ? 'Expand navigation' : 'Collapse navigation'">
-          <AppIcon v-if="ui.navbarCollapsed" :icon="PanelLeftOpen" />
-          <AppIcon v-else :icon="PanelLeftClose" />
-        </button>
+        <HfIconButton
+          type="boolean"
+          :state="ui.navbarCollapsed"
+          :action="toggleNav"
+          :icon-1="PanelLeftOpen"
+          :icon-2="PanelLeftClose"
+          :filling="false"
+          :ari-label1="'Expand navigation'"
+          :ari-label2="'Collapse navigation'"
+          :title-1="'Expand navigation'"
+          :title-2="'Collapse navigation'"
+          :tooltip-text-1="'Expand navigation'"
+          :tooltip-text-2="'Collapse navigation'"
+        />
       </div>
       <nav class="p-2 space-y-1">
         <NavItem
@@ -74,8 +84,8 @@ import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, PanelLeftClose, PanelLeftOpen, User } from 'lucide-vue-next';
-import AppIcon from '@/components/common/AppIcon.vue';
 import AppLogo from '@/components/common/AppLogo.vue';
+import HfIconButton from '@/components/common/HfIconButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
 import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
