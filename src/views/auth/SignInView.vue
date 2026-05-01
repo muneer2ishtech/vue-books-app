@@ -10,7 +10,10 @@
         <label class="block mb-1">{{ $t('password') }}</label>
         <div class="flex gap-2">
           <input v-model="password" :type="show ? 'text' : 'password'" class="flex-1 rounded border-app bg-white/5" />
-          <button type="button" class="border border-app rounded px-2" @click="show = !show">👁</button>
+          <button type="button" class="border border-app rounded px-2 py-1" @click="show = !show" :aria-label="show ? 'Mask password' : 'Unmask password'">
+            <Eye v-if="!show" :size="16" />
+            <EyeOff v-else :size="16" />
+          </button>
         </div>
       </div>
       <button class="w-full rounded bg-blue-600 text-white py-2">{{ $t('signin') }}</button>
@@ -31,6 +34,7 @@ import { signin } from '@/api/auth';
 import { useAuthStore } from '@/stores/auth';
 import { getApiErrorMessage } from '@/utils/error';
 import { useAlertsStore } from '@/stores/alerts';
+import { Eye, EyeOff } from 'lucide-vue-next';
 
 const router = useRouter();
 const auth = useAuthStore();

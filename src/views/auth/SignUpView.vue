@@ -7,11 +7,17 @@
       <input v-model.trim="form.email" type="email" :placeholder="$t('email')" class="w-full rounded border-app bg-white/5" />
       <div class="flex gap-2">
         <input v-model="form.password" :type="show1 ? 'text' : 'password'" :placeholder="$t('password')" class="flex-1 rounded border-app bg-white/5" />
-        <button type="button" class="border border-app rounded px-2" @click="show1 = !show1">👁</button>
+        <button type="button" class="border border-app rounded px-2 py-1" @click="show1 = !show1" :aria-label="show1 ? 'Mask password' : 'Unmask password'">
+          <Eye v-if="!show1" :size="16" />
+          <EyeOff v-else :size="16" />
+        </button>
       </div>
       <div class="flex gap-2">
         <input v-model="form.passwordConfirm" :type="show2 ? 'text' : 'password'" :placeholder="$t('confirmPassword')" class="flex-1 rounded border-app bg-white/5" />
-        <button type="button" class="border border-app rounded px-2" @click="show2 = !show2">👁</button>
+        <button type="button" class="border border-app rounded px-2 py-1" @click="show2 = !show2" :aria-label="show2 ? 'Mask password' : 'Unmask password'">
+          <Eye v-if="!show2" :size="16" />
+          <EyeOff v-else :size="16" />
+        </button>
       </div>
       <label class="flex items-center gap-2"><input v-model="form.acceptTermsConditions" type="checkbox" /> {{ $t('acceptTerms') }}</label>
       <button class="w-full rounded bg-blue-600 text-white py-2">{{ $t('signup') }}</button>
@@ -28,6 +34,7 @@ import AuthShell from '@/components/layout/AuthShell.vue';
 import { signup } from '@/api/auth';
 import { getApiErrorMessage } from '@/utils/error';
 import { useAlertsStore } from '@/stores/alerts';
+import { Eye, EyeOff } from 'lucide-vue-next';
 
 const router = useRouter();
 const { locale, t } = useI18n();

@@ -37,8 +37,12 @@
               <td>{{ book.price.toFixed(2) }}</td>
               <td>{{ book.isActive ? '✔' : '✖' }}</td>
               <td class="space-x-2">
-                <RouterLink :to="`/books/${book.id}`">👁</RouterLink>
-                <button @click="askDelete(book.id)">🗑</button>
+                <RouterLink :to="`/books/${book.id}`" class="inline-flex" aria-label="View book">
+                  <Eye :size="16" />
+                </RouterLink>
+                <button @click="askDelete(book.id)" class="inline-flex" aria-label="Delete book">
+                  <Trash2 :size="16" />
+                </button>
               </td>
             </tr>
           </tbody>
@@ -80,6 +84,7 @@ import { deleteBook, listBooks } from '@/api/books';
 import { getApiErrorMessage } from '@/utils/error';
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue';
 import { useAlertsStore } from '@/stores/alerts';
+import { Eye, Trash2 } from 'lucide-vue-next';
 
 const books = ref<Book[]>([]);
 const alerts = useAlertsStore();
