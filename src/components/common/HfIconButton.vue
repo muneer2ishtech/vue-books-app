@@ -15,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { Component } from 'vue';
+import { computed, type Component } from 'vue';
+
 import AppIcon from '@/components/common/AppIcon.vue';
 
 type ButtonType = 'simple' | 'boolean';

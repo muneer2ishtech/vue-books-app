@@ -17,6 +17,7 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Pin } from 'lucide-vue-next';
+
 import HfIconButton from '@/components/common/HfIconButton.vue';
 
 const props = withDefaults(defineProps<{

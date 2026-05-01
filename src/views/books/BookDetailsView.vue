@@ -18,11 +18,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
-import type { Book } from '@/types';
+
 import { deleteBook, getBook } from '@/api/books';
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue';
-import { getApiErrorMessage } from '@/utils/error';
 import { useAlertsStore } from '@/stores/alerts';
+import type { Book } from '@/types';
+import { getApiErrorMessage } from '@/utils/error';
 
 const route = useRoute();
 const router = useRouter();

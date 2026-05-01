@@ -1,10 +1,11 @@
 import axios from 'axios';
+
+import i18n from '@/i18n';
+import router from '@/router';
+import { useAlertsStore } from '@/stores/alerts';
 import { useAuthStore } from '@/stores/auth';
 import { useLoadingStore } from '@/stores/loading';
 import { getApiErrorMessage } from '@/utils/error';
-import { useAlertsStore } from '@/stores/alerts';
-import i18n from '@/i18n';
-import router from '@/router';
 
 export const http = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL

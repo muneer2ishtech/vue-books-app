@@ -79,13 +79,14 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue';
 import { RouterLink } from 'vue-router';
-import type { Book } from '@/types';
+import { Eye, Trash2 } from 'lucide-vue-next';
+
 import { deleteBook, listBooks } from '@/api/books';
-import { getApiErrorMessage } from '@/utils/error';
+import AppIcon from '@/components/common/AppIcon.vue';
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue';
 import { useAlertsStore } from '@/stores/alerts';
-import { Eye, Trash2 } from 'lucide-vue-next';
-import AppIcon from '@/components/common/AppIcon.vue';
+import type { Book } from '@/types';
+import { getApiErrorMessage } from '@/utils/error';
 
 const books = ref<Book[]>([]);
 const alerts = useAlertsStore();

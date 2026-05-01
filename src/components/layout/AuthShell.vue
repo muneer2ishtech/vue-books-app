@@ -27,9 +27,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+
 import AppLogo from '@/components/common/AppLogo.vue';
-import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
+import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';
 
 const { locale } = useI18n();

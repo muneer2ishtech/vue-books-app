@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { Moon, Sun } from 'lucide-vue-next';
+
 import HfIconButton from '@/components/common/HfIconButton.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 import PinIconButton from '@/components/common/PinIconButton.vue';

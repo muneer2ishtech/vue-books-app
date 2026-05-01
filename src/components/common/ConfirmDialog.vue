@@ -13,5 +13,8 @@
 
 <script setup lang="ts">
 defineProps<{ open: boolean; title: string; message: string }>();
-defineEmits<{ (e: 'cancel'): void; (e: 'confirm'): void }>();
+defineEmits<{
+  cancel: [];
+  confirm: [];
+}>();
 </script>

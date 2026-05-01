@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+
 const route = useRoute();
 const code = computed(() => String(route.query.code ?? ''));
 const message = computed(() => String(route.query.message ?? ''));

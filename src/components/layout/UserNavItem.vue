@@ -69,9 +69,10 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { LogOut, User } from 'lucide-vue-next';
+
+import NavItem from '@/components/layout/NavItem.vue';
 import { useAuthStore } from '@/stores/auth';
 import { getValidStr } from '@/utils/jwt';
-import NavItem from '@/components/layout/NavItem.vue';
 
 const props = defineProps<{
   collapsed: boolean;

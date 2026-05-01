@@ -68,17 +68,18 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { RouterView, useRoute } from 'vue-router';
-import { useAuthStore } from '@/stores/auth';
-import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, PanelLeftClose, PanelLeftOpen } from 'lucide-vue-next';
+
 import AppLogo from '@/components/common/AppLogo.vue';
+import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
 import HfIconButton from '@/components/common/HfIconButton.vue';
+import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
+import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';
 import NavItem from '@/components/layout/NavItem.vue';
 import UserNavItem from '@/components/layout/UserNavItem.vue';
-import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
-import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
-import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';
+import { useAuthStore } from '@/stores/auth';
+import { useUiStore } from '@/stores/ui';
 
 const route = useRoute();
 const auth = useAuthStore();

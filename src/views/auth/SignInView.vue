@@ -29,13 +29,14 @@
 import { ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import AuthShell from '@/components/layout/AuthShell.vue';
+import { Eye, EyeOff } from 'lucide-vue-next';
+
 import { signin } from '@/api/auth';
+import AppIcon from '@/components/common/AppIcon.vue';
+import AuthShell from '@/components/layout/AuthShell.vue';
+import { useAlertsStore } from '@/stores/alerts';
 import { useAuthStore } from '@/stores/auth';
 import { getApiErrorMessage } from '@/utils/error';
-import { useAlertsStore } from '@/stores/alerts';
-import { Eye, EyeOff } from 'lucide-vue-next';
-import AppIcon from '@/components/common/AppIcon.vue';
 
 const router = useRouter();
 const auth = useAuthStore();

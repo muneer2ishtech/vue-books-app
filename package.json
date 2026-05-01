@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.5.0",
   "type": "module",
-  "description": "Books managing application using Vue JS",
+  "description": "Book management application built with Vue.js",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
