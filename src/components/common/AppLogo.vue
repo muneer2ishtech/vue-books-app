@@ -5,12 +5,15 @@
       :alt="alt"
       class="h-5 w-5 object-contain dark:invert"
     />
-    <span v-if="showTitle && title">{{ title }}</span>
+    <span v-if="showTitle && resolvedTitle">{{ resolvedTitle }}</span>
   </strong>
 </template>
 
 <script setup lang="ts">
-withDefaults(
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const props = withDefaults(
   defineProps<{
     src?: string;
     alt?: string;
@@ -20,8 +23,13 @@ withDefaults(
   {
     src: '/assets/images/logo/books-stack-of-three.svg',
     alt: 'Books App logo',
-    title: '',
     showTitle: true
   }
+);
+
+const { t } = useI18n();
+
+const resolvedTitle = computed(() =>
+  props.title !== undefined ? props.title : t('appTitle')
 );
 </script>

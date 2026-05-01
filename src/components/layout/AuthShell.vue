@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-app flex flex-col">
     <header :class="['h-[60px] bg-panel border-b border-app px-4 flex items-center justify-between', pinHeader ? 'sticky top-0' : '']">
-      <AppLogo :title="$t('appTitle')" />
+      <AppLogo />
       <HeaderActionIcons
         :lang="lang"
         :is-dark-mode="isDarkMode"

@@ -3,7 +3,7 @@
     <aside class="fixed left-0 top-0 bottom-0 bg-panel border-r border-app transition-all duration-300"
       :style="{ width: ui.navbarCollapsed ? '80px' : '256px' }">
       <div class="h-[60px] border-b border-app px-3 flex items-center justify-between">
-        <AppLogo :show-title="!ui.navbarCollapsed" :title="$t('appTitle')" />
+        <AppLogo :show-title="!ui.navbarCollapsed" />
         <button class="border border-app rounded px-2 py-1" @click="toggleNav" :aria-label="ui.navbarCollapsed ? 'Expand navigation' : 'Collapse navigation'">
           <AppIcon v-if="ui.navbarCollapsed" :icon="PanelLeftOpen" />
           <AppIcon v-else :icon="PanelLeftClose" />
