@@ -7,10 +7,10 @@
       </strong>
       <HeaderActionIcons
         :lang="lang"
-        :is-dark-mode="dark"
+        :is-dark-mode="isDarkMode"
         :is-pinned="pinHeader"
         :on-select-lang="setLang"
-        :on-toggle-theme="() => (dark = !dark)"
+        :on-toggle-theme="toggleTheme"
         :on-toggle-pin="() => (pinHeader = !pinHeader)"
       />
     </header>
@@ -34,7 +34,7 @@ import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
 
 const { locale } = useI18n();
 const lang = ref(locale.value);
-const dark = ref(false);
+const isDarkMode = ref(false);
 const pinHeader = ref(false);
 const pinFooter = ref(false);
 const appLogo = '/assets/images/logo/books-stack-of-three.svg';
@@ -42,11 +42,15 @@ const appLogo = '/assets/images/logo/books-stack-of-three.svg';
 watch(lang, (v) => {
   locale.value = v;
 });
-watch(dark, (v) => {
+watch(isDarkMode, (v) => {
   document.documentElement.classList.toggle('dark', v);
 });
 
 function setLang(langCode: string) {
   lang.value = langCode;
+}
+
+function toggleTheme() {
+  isDarkMode.value = !isDarkMode.value;
 }
 </script>
