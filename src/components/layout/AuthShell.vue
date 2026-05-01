@@ -6,7 +6,16 @@
         <span>{{ $t('appTitle') }}</span>
       </strong>
       <div class="flex gap-2">
-        <button class="border border-app rounded px-2" @click="lang = lang === 'en' ? 'fi' : 'en'">{{ lang.toUpperCase() }}</button>
+        <button class="border border-app rounded px-2 py-1" @click="lang = lang === 'en' ? 'fi' : 'en'" :aria-label="`Current language ${lang.toUpperCase()}`">
+          <img
+            v-if="showLangFlag && langFlagSrc"
+            :src="langFlagSrc"
+            :alt="`${lang.toUpperCase()} flag`"
+            class="h-4 w-5 object-cover rounded-sm"
+            @error="onLangFlagError"
+          />
+          <span v-else>{{ lang.toUpperCase() }}</span>
+        </button>
         <button class="border border-app rounded px-2 py-1" @click="dark = !dark" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
           <AppIcon v-if="dark" :icon="Sun" />
           <AppIcon v-else :icon="Moon" />
@@ -28,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { Moon, Pin, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 import AppIcon from '@/components/common/AppIcon.vue';
@@ -39,11 +48,22 @@ const lang = ref(locale.value);
 const dark = ref(false);
 const pinHeader = ref(false);
 const pinFooter = ref(false);
+const langFlagMap: Record<string, string> = {
+  en: '/assets/images/flags/GB.svg',
+  fi: '/assets/images/flags/FI.svg'
+};
+const langFlagSrc = computed(() => langFlagMap[lang.value] ?? '');
+const showLangFlag = ref(true);
 
 watch(lang, (v) => {
   locale.value = v;
+  showLangFlag.value = true;
 });
 watch(dark, (v) => {
   document.documentElement.classList.toggle('dark', v);
 });
+
+function onLangFlagError() {
+  showLangFlag.value = false;
+}
 </script>
