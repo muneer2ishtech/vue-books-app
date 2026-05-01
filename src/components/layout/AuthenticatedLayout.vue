@@ -50,7 +50,7 @@
       <header :class="['h-[60px] bg-panel border-b border-app px-4 flex items-center justify-between', ui.pinHeader ? 'sticky top-0 z-10' : '']">
         <div class="text-muted">{{ route.path }}</div>
         <div class="flex gap-2">
-          <LanguageToggleButton :lang="ui.lang" @toggle="toggleLang" />
+          <LanguageToggleButton :lang="ui.lang" @select="setLang" />
           <button class="border border-app rounded px-2 py-1" @click="toggleTheme" :aria-label="ui.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
             <AppIcon v-if="ui.isDarkMode" :icon="Sun" />
             <AppIcon v-else :icon="Moon" />
@@ -103,13 +103,9 @@ watch(
 );
 
 const canBooks = computed(() => auth.roles.includes('USER') || auth.roles.includes('ADMIN'));
-const supportedLangs = ['en', 'fi', 'sv'] as const;
-
-function toggleLang() {
-  const currentIndex = supportedLangs.indexOf(ui.lang as (typeof supportedLangs)[number]);
-  const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % supportedLangs.length : 0;
-  ui.lang = supportedLangs[nextIndex];
-  locale.value = ui.lang;
+function setLang(lang: string) {
+  ui.lang = lang;
+  locale.value = lang;
 }
 function toggleTheme() {
   ui.isDarkMode = !ui.isDarkMode;

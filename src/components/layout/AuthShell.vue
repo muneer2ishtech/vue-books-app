@@ -6,7 +6,7 @@
         <span>{{ $t('appTitle') }}</span>
       </strong>
       <div class="flex gap-2">
-        <LanguageToggleButton :lang="lang" @toggle="toggleLang" />
+        <LanguageToggleButton :lang="lang" @select="setLang" />
         <button class="border border-app rounded px-2 py-1" @click="dark = !dark" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
           <AppIcon v-if="dark" :icon="Sun" />
           <AppIcon v-else :icon="Moon" />
@@ -40,7 +40,6 @@ const lang = ref(locale.value);
 const dark = ref(false);
 const pinHeader = ref(false);
 const pinFooter = ref(false);
-const supportedLangs = ['en', 'fi', 'sv'] as const;
 
 watch(lang, (v) => {
   locale.value = v;
@@ -49,9 +48,7 @@ watch(dark, (v) => {
   document.documentElement.classList.toggle('dark', v);
 });
 
-function toggleLang() {
-  const currentIndex = supportedLangs.indexOf(lang.value as (typeof supportedLangs)[number]);
-  const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % supportedLangs.length : 0;
-  lang.value = supportedLangs[nextIndex];
+function setLang(langCode: string) {
+  lang.value = langCode;
 }
 </script>
