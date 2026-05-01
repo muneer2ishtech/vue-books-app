@@ -20,17 +20,11 @@
           :tooltip-text-1="$t('light')"
           :tooltip-text-2="$t('dark')"
         />
-        <HfIconButton
-          type="boolean"
+        <PinIconButton
           :state="pinHeader"
           :action="() => (pinHeader = !pinHeader)"
-          :icon-1="Pin"
           :ari-label1="'Unpin header'"
           :ari-label2="'Pin header'"
-          :title-1="$t('unpin')"
-          :title-2="$t('pin')"
-          :tooltip-text-1="$t('unpin')"
-          :tooltip-text-2="$t('pin')"
         />
       </div>
     </header>
@@ -38,17 +32,11 @@
       <slot />
     </main>
     <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', pinFooter ? 'sticky bottom-0' : '']">
-      <HfIconButton
-        type="boolean"
+      <PinIconButton
         :state="pinFooter"
         :action="() => (pinFooter = !pinFooter)"
-        :icon-1="Pin"
         :ari-label1="'Unpin footer'"
         :ari-label2="'Pin footer'"
-        :title-1="$t('unpin')"
-        :title-2="$t('pin')"
-        :tooltip-text-1="$t('unpin')"
-        :tooltip-text-2="$t('pin')"
       />
     </footer>
   </div>
@@ -56,10 +44,11 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Moon, Pin, Sun } from 'lucide-vue-next';
+import { Moon, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 import HfIconButton from '@/components/common/HfIconButton.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
+import PinIconButton from '@/components/common/PinIconButton.vue';
 
 const { locale } = useI18n();
 const lang = ref(locale.value);

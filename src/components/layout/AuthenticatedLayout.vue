@@ -63,17 +63,11 @@
             :tooltip-text-1="$t('light')"
             :tooltip-text-2="$t('dark')"
           />
-          <HfIconButton
-            type="boolean"
+          <PinIconButton
             :state="ui.pinHeader"
             :action="() => (ui.pinHeader = !ui.pinHeader)"
-            :icon-1="Pin"
             :ari-label1="'Unpin header'"
             :ari-label2="'Pin header'"
-            :title-1="$t('unpin')"
-            :title-2="$t('pin')"
-            :tooltip-text-1="$t('unpin')"
-            :tooltip-text-2="$t('pin')"
           />
         </div>
       </header>
@@ -81,17 +75,11 @@
         <RouterView />
       </main>
       <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
-        <HfIconButton
-          type="boolean"
+        <PinIconButton
           :state="ui.pinFooter"
           :action="() => (ui.pinFooter = !ui.pinFooter)"
-          :icon-1="Pin"
           :ari-label1="'Unpin footer'"
           :ari-label2="'Pin footer'"
-          :title-1="$t('unpin')"
-          :title-2="$t('pin')"
-          :tooltip-text-1="$t('unpin')"
-          :tooltip-text-2="$t('pin')"
         />
       </footer>
     </div>
@@ -104,11 +92,12 @@ import { RouterView, useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
-import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
+import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Sun, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
 import HfIconButton from '@/components/common/HfIconButton.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
+import PinIconButton from '@/components/common/PinIconButton.vue';
 
 const route = useRoute();
 const router = useRouter();
