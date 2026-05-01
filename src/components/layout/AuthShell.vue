@@ -1,7 +1,10 @@
 <template>
   <div class="min-h-screen bg-app flex flex-col">
     <header :class="['h-[60px] bg-panel border-b border-app px-4 flex items-center justify-between', pinHeader ? 'sticky top-0' : '']">
-      <strong>{{ $t('appTitle') }}</strong>
+      <strong class="flex items-center gap-2">
+        <img :src="appLogo" alt="Books App logo" class="h-5 w-5 object-contain dark:invert" />
+        <span>{{ $t('appTitle') }}</span>
+      </strong>
       <div class="flex gap-2">
         <button class="border border-app rounded px-2" @click="lang = lang === 'en' ? 'fi' : 'en'">{{ lang.toUpperCase() }}</button>
         <button class="border border-app rounded px-2 py-1" @click="dark = !dark" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
@@ -29,6 +32,7 @@ import { ref, watch } from 'vue';
 import { Moon, Pin, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 import AppIcon from '@/components/common/AppIcon.vue';
+import appLogo from '@/assets/books-stack-of-three.svg';
 
 const { locale } = useI18n();
 const lang = ref(locale.value);

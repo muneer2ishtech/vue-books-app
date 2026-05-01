@@ -3,7 +3,10 @@
     <aside class="fixed left-0 top-0 bottom-0 bg-panel border-r border-app transition-all duration-300"
       :style="{ width: ui.navbarCollapsed ? '80px' : '256px' }">
       <div class="h-[60px] border-b border-app px-3 flex items-center justify-between">
-        <strong v-if="!ui.navbarCollapsed">Books App</strong>
+        <strong class="flex items-center gap-2">
+          <img :src="appLogo" alt="Books App logo" class="h-5 w-5 object-contain dark:invert" />
+          <span v-if="!ui.navbarCollapsed">Books App</span>
+        </strong>
         <button class="border border-app rounded px-2 py-1" @click="toggleNav" :aria-label="ui.navbarCollapsed ? 'Expand navigation' : 'Collapse navigation'">
           <AppIcon v-if="ui.navbarCollapsed" :icon="PanelLeftOpen" />
           <AppIcon v-else :icon="PanelLeftClose" />
@@ -77,6 +80,7 @@ import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
+import appLogo from '@/assets/books-stack-of-three.svg';
 
 const route = useRoute();
 const router = useRouter();
