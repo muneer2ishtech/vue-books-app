@@ -7,10 +7,19 @@
       </strong>
       <div class="flex gap-2">
         <LanguageToggleButton :lang="lang" :trigger-title="$t('language')" @select="setLang" />
-        <button class="border border-app rounded px-2 py-1" @click="dark = !dark" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'" :title="dark ? $t('light') : $t('dark')">
-          <AppIcon v-if="dark" :icon="Sun" />
-          <AppIcon v-else :icon="Moon" />
-        </button>
+        <HfIconButton
+          type="boolean"
+          :state="dark"
+          :action="() => (dark = !dark)"
+          :icon-1="Sun"
+          :icon-2="Moon"
+          :ari-label1="'Switch to light mode'"
+          :ari-label2="'Switch to dark mode'"
+          :title-1="$t('light')"
+          :title-2="$t('dark')"
+          :tooltip-text-1="$t('light')"
+          :tooltip-text-2="$t('dark')"
+        />
         <HfIconButton
           type="boolean"
           :state="pinHeader"
@@ -49,7 +58,6 @@
 import { ref, watch } from 'vue';
 import { Moon, Pin, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
-import AppIcon from '@/components/common/AppIcon.vue';
 import HfIconButton from '@/components/common/HfIconButton.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 

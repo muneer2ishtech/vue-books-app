@@ -50,10 +50,19 @@
         <div class="text-muted">{{ route.path }}</div>
         <div class="flex gap-2">
           <LanguageToggleButton :lang="ui.lang" :trigger-title="$t('language')" @select="setLang" />
-          <button class="border border-app rounded px-2 py-1" @click="toggleTheme" :aria-label="ui.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'" :title="ui.isDarkMode ? $t('light') : $t('dark')">
-            <AppIcon v-if="ui.isDarkMode" :icon="Sun" />
-            <AppIcon v-else :icon="Moon" />
-          </button>
+          <HfIconButton
+            type="boolean"
+            :state="ui.isDarkMode"
+            :action="toggleTheme"
+            :icon-1="Sun"
+            :icon-2="Moon"
+            :ari-label1="'Switch to light mode'"
+            :ari-label2="'Switch to dark mode'"
+            :title-1="$t('light')"
+            :title-2="$t('dark')"
+            :tooltip-text-1="$t('light')"
+            :tooltip-text-2="$t('dark')"
+          />
           <HfIconButton
             type="boolean"
             :state="ui.pinHeader"
