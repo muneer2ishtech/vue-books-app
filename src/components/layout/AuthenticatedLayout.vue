@@ -54,17 +54,17 @@
             <AppIcon v-if="ui.isDarkMode" :icon="Sun" />
             <AppIcon v-else :icon="Moon" />
           </button>
-          <HfIconIconButton
+          <HfIconButton
             type="boolean"
-            :icon="Pin"
             :state="ui.pinHeader"
-            :aria-label1="'Unpin header'"
-            :aria-label2="'Pin header'"
-            :title1="$t('unpin')"
-            :title2="$t('pin')"
-            :tooltip-text1="$t('unpin')"
-            :tooltip-text2="$t('pin')"
-            @click="ui.pinHeader = !ui.pinHeader"
+            :action="() => (ui.pinHeader = !ui.pinHeader)"
+            :icon-1="Pin"
+            :ari-label1="'Unpin header'"
+            :ari-label2="'Pin header'"
+            :title-1="$t('unpin')"
+            :title-2="$t('pin')"
+            :tooltip-text-1="$t('unpin')"
+            :tooltip-text-2="$t('pin')"
           />
         </div>
       </header>
@@ -72,17 +72,17 @@
         <RouterView />
       </main>
       <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
-        <HfIconIconButton
+        <HfIconButton
           type="boolean"
-          :icon="Pin"
           :state="ui.pinFooter"
-          :aria-label1="'Unpin footer'"
-          :aria-label2="'Pin footer'"
-          :title1="$t('unpin')"
-          :title2="$t('pin')"
-          :tooltip-text1="$t('unpin')"
-          :tooltip-text2="$t('pin')"
-          @click="ui.pinFooter = !ui.pinFooter"
+          :action="() => (ui.pinFooter = !ui.pinFooter)"
+          :icon-1="Pin"
+          :ari-label1="'Unpin footer'"
+          :ari-label2="'Pin footer'"
+          :title-1="$t('unpin')"
+          :title-2="$t('pin')"
+          :tooltip-text-1="$t('unpin')"
+          :tooltip-text-2="$t('pin')"
         />
       </footer>
     </div>
@@ -97,7 +97,7 @@ import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
-import HfIconIconButton from '@/components/common/HfIconIconButton.vue';
+import HfIconButton from '@/components/common/HfIconButton.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
 
