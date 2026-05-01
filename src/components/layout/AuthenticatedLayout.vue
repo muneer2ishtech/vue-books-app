@@ -49,12 +49,12 @@
       <header :class="['h-[60px] bg-panel border-b border-app px-4 flex items-center justify-between', ui.pinHeader ? 'sticky top-0 z-10' : '']">
         <div class="text-muted">{{ route.path }}</div>
         <div class="flex gap-2">
-          <LanguageToggleButton :lang="ui.lang" trigger-title="Language" @select="setLang" />
-          <button class="border border-app rounded px-2 py-1" @click="toggleTheme" :aria-label="ui.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'" :title="ui.isDarkMode ? 'Light' : 'Dark'">
+          <LanguageToggleButton :lang="ui.lang" :trigger-title="$t('language')" @select="setLang" />
+          <button class="border border-app rounded px-2 py-1" @click="toggleTheme" :aria-label="ui.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'" :title="ui.isDarkMode ? $t('light') : $t('dark')">
             <AppIcon v-if="ui.isDarkMode" :icon="Sun" />
             <AppIcon v-else :icon="Moon" />
           </button>
-          <button class="border border-app rounded px-2 py-1" @click="ui.pinHeader = !ui.pinHeader" :aria-label="ui.pinHeader ? 'Unpin header' : 'Pin header'" :title="ui.pinHeader ? 'Unpin' : 'Pin'">
+          <button class="border border-app rounded px-2 py-1" @click="ui.pinHeader = !ui.pinHeader" :aria-label="ui.pinHeader ? 'Unpin header' : 'Pin header'" :title="ui.pinHeader ? $t('unpin') : $t('pin')">
             <AppIcon :icon="Pin" :icon-class="ui.pinHeader ? 'fill-current' : 'fill-none'" />
           </button>
         </div>
@@ -63,7 +63,7 @@
         <RouterView />
       </main>
       <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
-        <button class="border border-app rounded px-2 py-1" @click="ui.pinFooter = !ui.pinFooter" :aria-label="ui.pinFooter ? 'Unpin footer' : 'Pin footer'" :title="ui.pinFooter ? 'Unpin' : 'Pin'">
+        <button class="border border-app rounded px-2 py-1" @click="ui.pinFooter = !ui.pinFooter" :aria-label="ui.pinFooter ? 'Unpin footer' : 'Pin footer'" :title="ui.pinFooter ? $t('unpin') : $t('pin')">
           <AppIcon :icon="Pin" :icon-class="ui.pinFooter ? 'fill-current' : 'fill-none'" />
         </button>
       </footer>

@@ -37,7 +37,12 @@ export default {
     new: 'New',
     edit: 'Edit',
     cancel: 'Cancel',
-    submit: 'Submit'
+    submit: 'Submit',
+    language: 'Language',
+    dark: 'Dark',
+    light: 'Light',
+    pin: 'Pin',
+    unpin: 'Unpin'
   },
   fi: {
     appTitle: 'Kirjasovellus',
@@ -77,7 +82,12 @@ export default {
     new: 'Uusi',
     edit: 'Muokkaa',
     cancel: 'Peruuta',
-    submit: 'Laheta'
+    submit: 'Laheta',
+    language: 'Kieli',
+    dark: 'Tumma',
+    light: 'Vaalea',
+    pin: 'Kiinnita',
+    unpin: 'Irrota'
   },
   sv: {
     appTitle: 'Bokapp',
@@ -117,6 +127,11 @@ export default {
     new: 'Ny',
     edit: 'Redigera',
     cancel: 'Avbryt',
-    submit: 'Skicka'
+    submit: 'Skicka',
+    language: 'Sprak',
+    dark: 'Mork',
+    light: 'Ljus',
+    pin: 'Fast',
+    unpin: 'Lossa'
   }
 };

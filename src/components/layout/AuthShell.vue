@@ -6,12 +6,12 @@
         <span>{{ $t('appTitle') }}</span>
       </strong>
       <div class="flex gap-2">
-        <LanguageToggleButton :lang="lang" trigger-title="Language" @select="setLang" />
-        <button class="border border-app rounded px-2 py-1" @click="dark = !dark" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'" :title="dark ? 'Light' : 'Dark'">
+        <LanguageToggleButton :lang="lang" :trigger-title="$t('language')" @select="setLang" />
+        <button class="border border-app rounded px-2 py-1" @click="dark = !dark" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'" :title="dark ? $t('light') : $t('dark')">
           <AppIcon v-if="dark" :icon="Sun" />
           <AppIcon v-else :icon="Moon" />
         </button>
-        <button class="border border-app rounded px-2 py-1" @click="pinHeader = !pinHeader" :aria-label="pinHeader ? 'Unpin header' : 'Pin header'" :title="pinHeader ? 'Unpin' : 'Pin'">
+        <button class="border border-app rounded px-2 py-1" @click="pinHeader = !pinHeader" :aria-label="pinHeader ? 'Unpin header' : 'Pin header'" :title="pinHeader ? $t('unpin') : $t('pin')">
           <AppIcon :icon="Pin" :icon-class="pinHeader ? 'fill-current' : 'fill-none'" />
         </button>
       </div>
@@ -20,7 +20,7 @@
       <slot />
     </main>
     <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', pinFooter ? 'sticky bottom-0' : '']">
-      <button class="border border-app rounded px-2 py-1" @click="pinFooter = !pinFooter" :aria-label="pinFooter ? 'Unpin footer' : 'Pin footer'" :title="pinFooter ? 'Unpin' : 'Pin'">
+      <button class="border border-app rounded px-2 py-1" @click="pinFooter = !pinFooter" :aria-label="pinFooter ? 'Unpin footer' : 'Pin footer'" :title="pinFooter ? $t('unpin') : $t('pin')">
         <AppIcon :icon="Pin" :icon-class="pinFooter ? 'fill-current' : 'fill-none'" />
       </button>
     </footer>
