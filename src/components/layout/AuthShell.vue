@@ -33,13 +33,13 @@ import { Moon, Pin, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 import AppIcon from '@/components/common/AppIcon.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
-import appLogo from '@/assets/books-stack-of-three.svg';
 
 const { locale } = useI18n();
 const lang = ref(locale.value);
 const dark = ref(false);
 const pinHeader = ref(false);
 const pinFooter = ref(false);
+const appLogo = '/assets/images/logo/books-stack-of-three.svg';
 
 watch(lang, (v) => {
   locale.value = v;

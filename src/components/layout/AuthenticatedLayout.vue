@@ -81,13 +81,13 @@ import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
-import appLogo from '@/assets/books-stack-of-three.svg';
 
 const route = useRoute();
 const router = useRouter();
 const auth = useAuthStore();
 const ui = useUiStore();
 const { locale } = useI18n();
+const appLogo = '/assets/images/logo/books-stack-of-three.svg';
 
 auth.init();
 ui.init();
