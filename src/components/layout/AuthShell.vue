@@ -11,18 +11,36 @@
           <AppIcon v-if="dark" :icon="Sun" />
           <AppIcon v-else :icon="Moon" />
         </button>
-        <button class="border border-app rounded px-2 py-1" @click="pinHeader = !pinHeader" :aria-label="pinHeader ? 'Unpin header' : 'Pin header'" :title="pinHeader ? $t('unpin') : $t('pin')">
-          <AppIcon :icon="Pin" :icon-class="pinHeader ? 'fill-current' : 'fill-none'" />
-        </button>
+        <HfIconIconButton
+          type="boolean"
+          :icon="Pin"
+          :state="pinHeader"
+          :aria-label1="'Unpin header'"
+          :aria-label2="'Pin header'"
+          :title1="$t('unpin')"
+          :title2="$t('pin')"
+          :tooltip-text1="$t('unpin')"
+          :tooltip-text2="$t('pin')"
+          @click="pinHeader = !pinHeader"
+        />
       </div>
     </header>
     <main class="flex-1 grid place-items-center p-4">
       <slot />
     </main>
     <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', pinFooter ? 'sticky bottom-0' : '']">
-      <button class="border border-app rounded px-2 py-1" @click="pinFooter = !pinFooter" :aria-label="pinFooter ? 'Unpin footer' : 'Pin footer'" :title="pinFooter ? $t('unpin') : $t('pin')">
-        <AppIcon :icon="Pin" :icon-class="pinFooter ? 'fill-current' : 'fill-none'" />
-      </button>
+      <HfIconIconButton
+        type="boolean"
+        :icon="Pin"
+        :state="pinFooter"
+        :aria-label1="'Unpin footer'"
+        :aria-label2="'Pin footer'"
+        :title1="$t('unpin')"
+        :title2="$t('pin')"
+        :tooltip-text1="$t('unpin')"
+        :tooltip-text2="$t('pin')"
+        @click="pinFooter = !pinFooter"
+      />
     </footer>
   </div>
 </template>
@@ -32,6 +50,7 @@ import { ref, watch } from 'vue';
 import { Moon, Pin, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 import AppIcon from '@/components/common/AppIcon.vue';
+import HfIconIconButton from '@/components/common/HfIconIconButton.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 
 const { locale } = useI18n();
