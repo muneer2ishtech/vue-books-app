@@ -67,7 +67,8 @@
       <main class="flex-1 p-4 overflow-auto">
         <RouterView />
       </main>
-      <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
+      <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end gap-2', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
+        <FooterExternalLinks />
         <FooterActionIcons
           :is-pinned="ui.pinFooter"
           :on-toggle-pin="() => (ui.pinFooter = !ui.pinFooter)"
@@ -89,6 +90,7 @@ import HfIconButton from '@/components/common/HfIconButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
 import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
+import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';
 
 const route = useRoute();
 const router = useRouter();

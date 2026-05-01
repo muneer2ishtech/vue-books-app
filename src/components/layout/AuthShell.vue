@@ -14,7 +14,8 @@
     <main class="flex-1 grid place-items-center p-4">
       <slot />
     </main>
-    <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', pinFooter ? 'sticky bottom-0' : '']">
+    <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end gap-2', pinFooter ? 'sticky bottom-0' : '']">
+      <FooterExternalLinks />
       <FooterActionIcons
         :is-pinned="pinFooter"
         :on-toggle-pin="() => (pinFooter = !pinFooter)"
@@ -29,6 +30,7 @@ import { useI18n } from 'vue-i18n';
 import AppLogo from '@/components/common/AppLogo.vue';
 import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
+import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';
 
 const { locale } = useI18n();
 const lang = ref(locale.value);
