@@ -5,8 +5,8 @@
       <div class="h-[60px] border-b border-app px-3 flex items-center justify-between">
         <strong v-if="!ui.navbarCollapsed">Books App</strong>
         <button class="border border-app rounded px-2 py-1" @click="toggleNav" :aria-label="ui.navbarCollapsed ? 'Expand navigation' : 'Collapse navigation'">
-          <AppIcon v-if="ui.navbarCollapsed" :icon="PanelLeftClose" />
-          <AppIcon v-else :icon="PanelLeftOpen" />
+          <AppIcon v-if="ui.navbarCollapsed" :icon="PanelLeftOpen" />
+          <AppIcon v-else :icon="PanelLeftClose" />
         </button>
       </div>
       <nav class="p-2 space-y-1">
@@ -53,7 +53,7 @@
             <AppIcon v-else :icon="Moon" />
           </button>
           <button class="border border-app rounded px-2 py-1" @click="ui.pinHeader = !ui.pinHeader" :aria-label="ui.pinHeader ? 'Unpin header' : 'Pin header'">
-            <AppIcon :icon="Pin" />
+            <AppIcon :icon="Pin" :icon-class="ui.pinHeader ? 'fill-current' : 'fill-none'" />
           </button>
         </div>
       </header>
@@ -62,7 +62,7 @@
       </main>
       <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
         <button class="border border-app rounded px-2 py-1" @click="ui.pinFooter = !ui.pinFooter" :aria-label="ui.pinFooter ? 'Unpin footer' : 'Pin footer'">
-          <AppIcon :icon="Pin" />
+          <AppIcon :icon="Pin" :icon-class="ui.pinFooter ? 'fill-current' : 'fill-none'" />
         </button>
       </footer>
     </div>

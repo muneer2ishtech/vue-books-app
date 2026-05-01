@@ -9,7 +9,7 @@
           <AppIcon v-else :icon="Moon" />
         </button>
         <button class="border border-app rounded px-2 py-1" @click="pinHeader = !pinHeader" :aria-label="pinHeader ? 'Unpin header' : 'Pin header'">
-          <AppIcon :icon="Pin" />
+          <AppIcon :icon="Pin" :icon-class="pinHeader ? 'fill-current' : 'fill-none'" />
         </button>
       </div>
     </header>
@@ -18,7 +18,7 @@
     </main>
     <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', pinFooter ? 'sticky bottom-0' : '']">
       <button class="border border-app rounded px-2 py-1" @click="pinFooter = !pinFooter" :aria-label="pinFooter ? 'Unpin footer' : 'Pin footer'">
-        <AppIcon :icon="Pin" />
+        <AppIcon :icon="Pin" :icon-class="pinFooter ? 'fill-current' : 'fill-none'" />
       </button>
     </footer>
   </div>
