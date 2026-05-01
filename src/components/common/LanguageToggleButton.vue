@@ -3,6 +3,7 @@
     <button
       class="border border-app rounded px-2 py-1 inline-flex items-center justify-center min-w-[42px]"
       :aria-label="`Current language ${currentLanguage.code.toUpperCase()}`"
+      :title="triggerTitle"
       @click="open = !open"
     >
       <img
@@ -46,6 +47,7 @@ type LangCode = 'en' | 'fi' | 'sv';
 
 const props = defineProps<{
   lang: string;
+  triggerTitle?: string;
 }>();
 
 const emit = defineEmits<{
