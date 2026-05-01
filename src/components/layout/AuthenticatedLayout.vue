@@ -13,37 +13,35 @@
         </button>
       </div>
       <nav class="p-2 space-y-1">
-        <RouterLink class="block border border-app rounded px-2 py-2" to="/home" :title="ui.navbarCollapsed ? $t('home') : undefined">
-          <span class="flex items-center gap-2">
-            <AppIcon :icon="House" />
-            <span v-if="!ui.navbarCollapsed">{{ $t('home') }}</span>
-          </span>
-        </RouterLink>
-        <RouterLink
+        <NavItem
+          :to="'/home'"
+          :icon="House"
+          :label="$t('home')"
+          :collapsed="ui.navbarCollapsed"
+        />
+        <NavItem
           v-if="canBooks"
-          class="block border border-app rounded px-2 py-2"
-          to="/books"
-          :title="ui.navbarCollapsed ? $t('books') : undefined"
-        >
-          <span class="flex items-center gap-2">
-            <AppIcon :icon="BookCopy" />
-            <span v-if="!ui.navbarCollapsed">{{ $t('books') }}</span>
-          </span>
-        </RouterLink>
+          :to="'/books'"
+          :icon="BookCopy"
+          :label="$t('books')"
+          :collapsed="ui.navbarCollapsed"
+        />
       </nav>
       <div class="absolute bottom-0 w-full p-2 border-t border-app">
-        <RouterLink class="block border border-app rounded px-2 py-2 mb-1" to="/me" :title="ui.navbarCollapsed ? $t('profile') : undefined">
-          <span class="flex items-center gap-2">
-            <AppIcon :icon="User" />
-            <span v-if="!ui.navbarCollapsed">{{ $t('profile') }}</span>
-          </span>
-        </RouterLink>
-        <button class="w-full border border-app rounded px-2 py-2" @click="logout" :title="ui.navbarCollapsed ? $t('logout') : undefined">
-          <span class="flex items-center gap-2">
-            <AppIcon :icon="LogOut" />
-            <span v-if="!ui.navbarCollapsed">{{ $t('logout') }}</span>
-          </span>
-        </button>
+        <NavItem
+          :to="'/me'"
+          :icon="User"
+          :label="$t('profile')"
+          :collapsed="ui.navbarCollapsed"
+          item-class="mb-1"
+        />
+        <NavItem
+          :icon="LogOut"
+          :label="$t('logout')"
+          :collapsed="ui.navbarCollapsed"
+          item-class="w-full"
+          @click="logout"
+        />
       </div>
     </aside>
 
@@ -75,13 +73,14 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
+import { RouterView, useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
 import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
+import NavItem from '@/components/layout/NavItem.vue';
 
 const route = useRoute();
 const router = useRouter();
