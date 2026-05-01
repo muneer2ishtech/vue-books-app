@@ -38,10 +38,10 @@
               <td>{{ book.isActive ? '✔' : '✖' }}</td>
               <td class="space-x-2">
                 <RouterLink :to="`/books/${book.id}`" class="inline-flex" aria-label="View book">
-                  <Eye :size="16" />
+                  <AppIcon :icon="Eye" />
                 </RouterLink>
                 <button @click="askDelete(book.id)" class="inline-flex" aria-label="Delete book">
-                  <Trash2 :size="16" />
+                  <AppIcon :icon="Trash2" />
                 </button>
               </td>
             </tr>
@@ -85,6 +85,7 @@ import { getApiErrorMessage } from '@/utils/error';
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue';
 import { useAlertsStore } from '@/stores/alerts';
 import { Eye, Trash2 } from 'lucide-vue-next';
+import AppIcon from '@/components/common/AppIcon.vue';
 
 const books = ref<Book[]>([]);
 const alerts = useAlertsStore();

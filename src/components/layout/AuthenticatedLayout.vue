@@ -5,14 +5,14 @@
       <div class="h-[60px] border-b border-app px-3 flex items-center justify-between">
         <strong v-if="!ui.navbarCollapsed">Books App</strong>
         <button class="border border-app rounded px-2 py-1" @click="toggleNav" :aria-label="ui.navbarCollapsed ? 'Expand navigation' : 'Collapse navigation'">
-          <PanelLeftClose v-if="ui.navbarCollapsed" :size="16" />
-          <PanelLeftOpen v-else :size="16" />
+          <AppIcon v-if="ui.navbarCollapsed" :icon="PanelLeftClose" />
+          <AppIcon v-else :icon="PanelLeftOpen" />
         </button>
       </div>
       <nav class="p-2 space-y-1">
         <RouterLink class="block border border-app rounded px-2 py-2" to="/home">
           <span class="flex items-center gap-2">
-            <House :size="16" />
+            <AppIcon :icon="House" />
             <span v-if="!ui.navbarCollapsed">{{ $t('home') }}</span>
           </span>
         </RouterLink>
@@ -22,7 +22,7 @@
           to="/books"
         >
           <span class="flex items-center gap-2">
-            <BookCopy :size="16" />
+            <AppIcon :icon="BookCopy" />
             <span v-if="!ui.navbarCollapsed">{{ $t('books') }}</span>
           </span>
         </RouterLink>
@@ -30,13 +30,13 @@
       <div class="absolute bottom-0 w-full p-2 border-t border-app">
         <RouterLink class="block border border-app rounded px-2 py-2 mb-1" to="/me">
           <span class="flex items-center gap-2">
-            <User :size="16" />
+            <AppIcon :icon="User" />
             <span v-if="!ui.navbarCollapsed">{{ $t('profile') }}</span>
           </span>
         </RouterLink>
         <button class="w-full border border-app rounded px-2 py-2" @click="logout">
           <span class="flex items-center gap-2">
-            <LogOut :size="16" />
+            <AppIcon :icon="LogOut" />
             <span v-if="!ui.navbarCollapsed">{{ $t('logout') }}</span>
           </span>
         </button>
@@ -49,11 +49,11 @@
         <div class="flex gap-2">
           <button class="border border-app rounded px-2" @click="toggleLang">{{ ui.lang.toUpperCase() }}</button>
           <button class="border border-app rounded px-2 py-1" @click="toggleTheme" :aria-label="ui.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
-            <Sun v-if="ui.isDarkMode" :size="16" />
-            <Moon v-else :size="16" />
+            <AppIcon v-if="ui.isDarkMode" :icon="Sun" />
+            <AppIcon v-else :icon="Moon" />
           </button>
           <button class="border border-app rounded px-2 py-1" @click="ui.pinHeader = !ui.pinHeader" :aria-label="ui.pinHeader ? 'Unpin header' : 'Pin header'">
-            <Pin :size="16" />
+            <AppIcon :icon="Pin" />
           </button>
         </div>
       </header>
@@ -62,7 +62,7 @@
       </main>
       <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
         <button class="border border-app rounded px-2 py-1" @click="ui.pinFooter = !ui.pinFooter" :aria-label="ui.pinFooter ? 'Unpin footer' : 'Pin footer'">
-          <Pin :size="16" />
+          <AppIcon :icon="Pin" />
         </button>
       </footer>
     </div>
@@ -76,6 +76,7 @@ import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
+import AppIcon from '@/components/common/AppIcon.vue';
 
 const route = useRoute();
 const router = useRouter();

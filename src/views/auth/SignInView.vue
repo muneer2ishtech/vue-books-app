@@ -11,8 +11,8 @@
         <div class="flex gap-2">
           <input v-model="password" :type="show ? 'text' : 'password'" class="flex-1 rounded border-app bg-white/5" />
           <button type="button" class="border border-app rounded px-2 py-1" @click="show = !show" :aria-label="show ? 'Mask password' : 'Unmask password'">
-            <Eye v-if="!show" :size="16" />
-            <EyeOff v-else :size="16" />
+            <AppIcon v-if="!show" :icon="Eye" />
+            <AppIcon v-else :icon="EyeOff" />
           </button>
         </div>
       </div>
@@ -35,6 +35,7 @@ import { useAuthStore } from '@/stores/auth';
 import { getApiErrorMessage } from '@/utils/error';
 import { useAlertsStore } from '@/stores/alerts';
 import { Eye, EyeOff } from 'lucide-vue-next';
+import AppIcon from '@/components/common/AppIcon.vue';
 
 const router = useRouter();
 const auth = useAuthStore();
