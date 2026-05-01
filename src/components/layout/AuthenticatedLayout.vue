@@ -35,20 +35,7 @@
         />
       </nav>
       <div class="absolute bottom-0 w-full p-2 border-t border-app">
-        <NavItem
-          :to="'/me'"
-          :icon="User"
-          :label="$t('profile')"
-          :collapsed="ui.navbarCollapsed"
-          item-class="mb-1"
-        />
-        <NavItem
-          :icon="LogOut"
-          :label="$t('logout')"
-          :collapsed="ui.navbarCollapsed"
-          item-class="w-full"
-          @click="logout"
-        />
+        <SidebarUserMenu :collapsed="ui.navbarCollapsed" />
       </div>
     </aside>
 
@@ -80,20 +67,20 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import { RouterView, useRoute, useRouter } from 'vue-router';
+import { RouterView, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
-import { BookCopy, House, LogOut, PanelLeftClose, PanelLeftOpen, User } from 'lucide-vue-next';
+import { BookCopy, House, PanelLeftClose, PanelLeftOpen } from 'lucide-vue-next';
 import AppLogo from '@/components/common/AppLogo.vue';
 import HfIconButton from '@/components/common/HfIconButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
+import SidebarUserMenu from '@/components/layout/SidebarUserMenu.vue';
 import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
 import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';
 
 const route = useRoute();
-const router = useRouter();
 const auth = useAuthStore();
 const ui = useUiStore();
 const { locale } = useI18n();
@@ -122,9 +109,5 @@ function toggleTheme() {
 }
 function toggleNav() {
   ui.navbarCollapsed = !ui.navbarCollapsed;
-}
-function logout() {
-  auth.logout(false);
-  router.replace('/signin');
 }
 </script>

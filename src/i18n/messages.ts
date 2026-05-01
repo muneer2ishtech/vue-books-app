@@ -44,7 +44,8 @@ export default {
     pin: 'Pin',
     unpin: 'Unpin',
     expandNavigation: 'Expand navigation',
-    collapseNavigation: 'Collapse navigation'
+    collapseNavigation: 'Collapse navigation',
+    accountMenu: 'Account menu'
   },
   fi: {
     appTitle: 'Kirjasovellus',
@@ -89,7 +90,10 @@ export default {
     dark: 'Tumma',
     light: 'Vaalea',
     pin: 'Kiinnita',
-    unpin: 'Irrota'
+    unpin: 'Irrota',
+    expandNavigation: 'Laajenna navigointi',
+    collapseNavigation: 'Supista navigointi',
+    accountMenu: 'Tili-valikko'
   },
   sv: {
     appTitle: 'Bokapp',
@@ -136,6 +140,7 @@ export default {
     pin: 'Fast',
     unpin: 'Lossa',
     expandNavigation: 'Expandera navigeringen',
-    collapseNavigation: 'Komprimera navigeringen'
+    collapseNavigation: 'Komprimera navigeringen',
+    accountMenu: 'Kontomeny'
   }
 };

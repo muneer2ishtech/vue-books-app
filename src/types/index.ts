@@ -6,6 +6,7 @@ export interface JwtPayload {
   userId: number;
   roles?: string[] | string | null;
   fullName?: string | null;
+  displayName?: string | null;
   lang?: string | null;
   photoUrl?: string | null;
   uiPreferences?: {
