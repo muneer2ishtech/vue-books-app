@@ -25,7 +25,8 @@ defineEmits<{
 const showFlag = ref(true);
 const langFlagMap: Record<string, string> = {
   en: '/assets/images/flags/GB.svg',
-  fi: '/assets/images/flags/FI.svg'
+  fi: '/assets/images/flags/FI.svg',
+  sv: '/assets/images/flags/SE.svg'
 };
 const flagSrc = computed(() => langFlagMap[props.lang] ?? '');
 

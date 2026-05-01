@@ -40,6 +40,7 @@ const lang = ref(locale.value);
 const dark = ref(false);
 const pinHeader = ref(false);
 const pinFooter = ref(false);
+const supportedLangs = ['en', 'fi', 'sv'] as const;
 
 watch(lang, (v) => {
   locale.value = v;
@@ -49,6 +50,8 @@ watch(dark, (v) => {
 });
 
 function toggleLang() {
-  lang.value = lang.value === 'en' ? 'fi' : 'en';
+  const currentIndex = supportedLangs.indexOf(lang.value as (typeof supportedLangs)[number]);
+  const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % supportedLangs.length : 0;
+  lang.value = supportedLangs[nextIndex];
 }
 </script>

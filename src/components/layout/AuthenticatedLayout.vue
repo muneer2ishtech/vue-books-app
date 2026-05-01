@@ -103,9 +103,12 @@ watch(
 );
 
 const canBooks = computed(() => auth.roles.includes('USER') || auth.roles.includes('ADMIN'));
+const supportedLangs = ['en', 'fi', 'sv'] as const;
 
 function toggleLang() {
-  ui.lang = ui.lang === 'en' ? 'fi' : 'en';
+  const currentIndex = supportedLangs.indexOf(ui.lang as (typeof supportedLangs)[number]);
+  const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % supportedLangs.length : 0;
+  ui.lang = supportedLangs[nextIndex];
   locale.value = ui.lang;
 }
 function toggleTheme() {
