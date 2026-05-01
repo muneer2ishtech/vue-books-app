@@ -1,22 +1,18 @@
 <template>
   <div class="relative" ref="rootEl">
     <button
-      class="border border-app rounded px-2 py-1 inline-flex items-center gap-2 min-w-[122px] justify-between"
+      class="border border-app rounded px-2 py-1 inline-flex items-center justify-center min-w-[42px]"
       :aria-label="`Current language ${currentLanguage.code.toUpperCase()}`"
       @click="open = !open"
     >
-      <span class="inline-flex items-center gap-2">
-        <img
-          v-if="!flagError[currentLanguage.code] && currentLanguage.flagSrc"
-          :src="currentLanguage.flagSrc"
-          :alt="`${currentLanguage.label} flag`"
-          class="h-4 w-5 object-cover rounded-sm"
-          @error="flagError[currentLanguage.code] = true"
-        />
-        <span v-else class="text-xs font-semibold">{{ currentLanguage.code.toUpperCase() }}</span>
-        <span>{{ currentLanguage.label }}</span>
-      </span>
-      <span class="text-xs">▾</span>
+      <img
+        v-if="!flagError[currentLanguage.code] && currentLanguage.flagSrc"
+        :src="currentLanguage.flagSrc"
+        :alt="`${currentLanguage.label} flag`"
+        class="h-4 w-5 object-cover rounded-sm"
+        @error="flagError[currentLanguage.code] = true"
+      />
+      <span v-else class="text-xs font-semibold">{{ currentLanguage.code.toUpperCase() }}</span>
     </button>
 
     <div
