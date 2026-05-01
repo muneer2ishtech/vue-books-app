@@ -50,16 +50,7 @@
       <header :class="['h-[60px] bg-panel border-b border-app px-4 flex items-center justify-between', ui.pinHeader ? 'sticky top-0 z-10' : '']">
         <div class="text-muted">{{ route.path }}</div>
         <div class="flex gap-2">
-          <button class="border border-app rounded px-2 py-1" @click="toggleLang" :aria-label="`Current language ${ui.lang.toUpperCase()}`">
-            <img
-              v-if="showLangFlag && langFlagSrc"
-              :src="langFlagSrc"
-              :alt="`${ui.lang.toUpperCase()} flag`"
-              class="h-4 w-5 object-cover rounded-sm"
-              @error="onLangFlagError"
-            />
-            <span v-else>{{ ui.lang.toUpperCase() }}</span>
-          </button>
+          <LanguageToggleButton :lang="ui.lang" @toggle="toggleLang" />
           <button class="border border-app rounded px-2 py-1" @click="toggleTheme" :aria-label="ui.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
             <AppIcon v-if="ui.isDarkMode" :icon="Sun" />
             <AppIcon v-else :icon="Moon" />
@@ -82,13 +73,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
 import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Pin, Sun, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
+import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 import appLogo from '@/assets/books-stack-of-three.svg';
 
 const route = useRoute();
@@ -111,26 +103,10 @@ watch(
 );
 
 const canBooks = computed(() => auth.roles.includes('USER') || auth.roles.includes('ADMIN'));
-const langFlagMap: Record<string, string> = {
-  en: '/assets/images/flags/GB.svg',
-  fi: '/assets/images/flags/FI.svg'
-};
-const langFlagSrc = computed(() => langFlagMap[ui.lang] ?? '');
-const showLangFlag = ref(true);
-
-watch(
-  () => ui.lang,
-  () => {
-    showLangFlag.value = true;
-  }
-);
 
 function toggleLang() {
   ui.lang = ui.lang === 'en' ? 'fi' : 'en';
   locale.value = ui.lang;
-}
-function onLangFlagError() {
-  showLangFlag.value = false;
 }
 function toggleTheme() {
   ui.isDarkMode = !ui.isDarkMode;
