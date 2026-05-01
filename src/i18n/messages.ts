@@ -42,7 +42,9 @@ export default {
     dark: 'Dark',
     light: 'Light',
     pin: 'Pin',
-    unpin: 'Unpin'
+    unpin: 'Unpin',
+    expandNavigation: 'Expand navigation',
+    collapseNavigation: 'Collapse navigation'
   },
   fi: {
     appTitle: 'Kirjasovellus',
@@ -132,6 +134,8 @@ export default {
     dark: 'Mork',
     light: 'Ljus',
     pin: 'Fast',
-    unpin: 'Lossa'
+    unpin: 'Lossa',
+    expandNavigation: 'Expandera navigeringen',
+    collapseNavigation: 'Komprimera navigeringen'
   }
 };

@@ -11,12 +11,12 @@
           :icon-1="PanelLeftOpen"
           :icon-2="PanelLeftClose"
           :filling="false"
-          :ari-label1="'Expand navigation'"
-          :ari-label2="'Collapse navigation'"
-          :title-1="'Expand navigation'"
-          :title-2="'Collapse navigation'"
-          :tooltip-text-1="'Expand navigation'"
-          :tooltip-text-2="'Collapse navigation'"
+          :ari-label1="$t('expandNavigation')"
+          :ari-label2="$t('collapseNavigation')"
+          :title-1="$t('expandNavigation')"
+          :title-2="$t('collapseNavigation')"
+          :tooltip-text-1="$t('expandNavigation')"
+          :tooltip-text-2="$t('collapseNavigation')"
         />
       </div>
       <nav class="p-2 space-y-1">
