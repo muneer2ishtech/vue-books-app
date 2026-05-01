@@ -35,7 +35,7 @@
         />
       </nav>
       <div class="absolute bottom-0 w-full p-2 border-t border-app">
-        <SidebarUserMenu :collapsed="ui.navbarCollapsed" />
+        <UserNavItem :collapsed="ui.navbarCollapsed" />
       </div>
     </aside>
 
@@ -75,7 +75,7 @@ import { BookCopy, House, PanelLeftClose, PanelLeftOpen } from 'lucide-vue-next'
 import AppLogo from '@/components/common/AppLogo.vue';
 import HfIconButton from '@/components/common/HfIconButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
-import SidebarUserMenu from '@/components/layout/SidebarUserMenu.vue';
+import UserNavItem from '@/components/layout/UserNavItem.vue';
 import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
 import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
 import FooterExternalLinks from '@/components/layout/FooterExternalLinks.vue';

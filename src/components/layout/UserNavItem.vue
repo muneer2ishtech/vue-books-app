@@ -2,8 +2,8 @@
   <div class="relative" ref="rootEl">
     <button
       type="button"
-      class="w-full border border-app rounded px-2 py-2 text-left hover:bg-white/5 transition-colors"
-      :class="collapsed ? 'flex justify-center' : 'flex items-center gap-2 min-w-0'"
+      class="w-full border border-app px-2 py-2 text-left hover:bg-white/5 transition-colors"
+      :class="triggerClass"
       :aria-expanded="menuOpen"
       aria-haspopup="menu"
       :aria-label="$t('accountMenu')"
@@ -24,7 +24,7 @@
           v-if="showPhotoCollapsed"
           :src="resolvedPhotoUrl"
           alt=""
-          class="h-8 w-8 rounded-full object-cover"
+          class="h-8 w-8 shrink-0 rounded-full object-cover"
           @error="onPhotoError"
         />
         <span
@@ -37,29 +37,29 @@
       </template>
     </button>
 
-    <Transition name="sidebar-user-menu">
+    <Transition name="user-nav-item">
       <div
         v-if="menuOpen"
-        class="absolute bottom-full left-0 right-0 z-30 mb-1 rounded border border-app bg-panel py-1 shadow"
+        class="absolute bottom-full left-0 right-0 z-30 mb-1 rounded border border-app bg-panel p-1 shadow"
         role="menu"
         @click.stop
       >
-        <RouterLink
-          to="/me"
-          role="menuitem"
-          class="block w-full px-3 py-2 text-left text-sm hover:bg-white/10"
-          @click="closeMenu"
-        >
-          {{ $t('profile') }}
-        </RouterLink>
-        <button
-          type="button"
-          role="menuitem"
-          class="w-full px-3 py-2 text-left text-sm hover:bg-white/10"
-          @click="onLogoutClick"
-        >
-          {{ $t('logout') }}
-        </button>
+        <div class="space-y-1">
+          <NavItem
+            :to="'/me'"
+            :icon="User"
+            :label="$t('profile')"
+            :collapsed="collapsed"
+            item-class="w-full"
+          />
+          <NavItem
+            :icon="LogOut"
+            :label="$t('logout')"
+            :collapsed="collapsed"
+            item-class="w-full"
+            @click="onLogoutClick"
+          />
+        </div>
       </div>
     </Transition>
   </div>
@@ -67,20 +67,29 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { LogOut, User } from 'lucide-vue-next';
 import { useAuthStore } from '@/stores/auth';
 import { getValidStr } from '@/utils/jwt';
+import NavItem from '@/components/layout/NavItem.vue';
 
 const props = defineProps<{
   collapsed: boolean;
 }>();
 
 const auth = useAuthStore();
+const route = useRoute();
 const router = useRouter();
 
 const menuOpen = ref(false);
 const rootEl = ref<HTMLElement | null>(null);
 const photoLoadFailed = ref(false);
+
+const triggerClass = computed(() =>
+  props.collapsed
+    ? 'flex justify-center rounded-full'
+    : 'flex items-center gap-2 min-w-0 rounded'
+);
 
 const displayLabel = computed(() => {
   const p = auth.payload;
@@ -120,6 +129,15 @@ watch(
   () => props.collapsed,
   () => {
     menuOpen.value = false;
+  }
+);
+
+watch(
+  () => route.path,
+  () => {
+    if (menuOpen.value) {
+      closeMenu();
+    }
   }
 );
 
@@ -163,15 +181,15 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.sidebar-user-menu-enter-active,
-.sidebar-user-menu-leave-active {
+.user-nav-item-enter-active,
+.user-nav-item-leave-active {
   transition:
     opacity 0.18s ease,
     transform 0.18s ease;
 }
 
-.sidebar-user-menu-enter-from,
-.sidebar-user-menu-leave-to {
+.user-nav-item-enter-from,
+.user-nav-item-leave-to {
   opacity: 0;
   transform: translateY(8px);
 }
