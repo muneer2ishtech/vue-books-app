@@ -119,7 +119,9 @@ const resolvedTooltipText = computed(() => {
 });
 
 const resolvedFilled = computed(() => {
-  if (hasValue(props.icon2)) return true;
+  if (hasValue(props.icon2)) {
+    return props.filling;
+  }
   if (props.type === 'boolean' && props.changeFilling) {
     return props.state;
   }

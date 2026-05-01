@@ -7,6 +7,7 @@
       :action="onToggleTheme"
       :icon-1="Sun"
       :icon-2="Moon"
+      :filling="false"
       :ari-label1="'Switch to light mode'"
       :ari-label2="'Switch to dark mode'"
       :title-1="$t('light')"
