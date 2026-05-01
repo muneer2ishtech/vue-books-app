@@ -13,7 +13,7 @@
         </button>
       </div>
       <nav class="p-2 space-y-1">
-        <RouterLink class="block border border-app rounded px-2 py-2" to="/home">
+        <RouterLink class="block border border-app rounded px-2 py-2" to="/home" :title="ui.navbarCollapsed ? $t('home') : undefined">
           <span class="flex items-center gap-2">
             <AppIcon :icon="House" />
             <span v-if="!ui.navbarCollapsed">{{ $t('home') }}</span>
@@ -23,6 +23,7 @@
           v-if="canBooks"
           class="block border border-app rounded px-2 py-2"
           to="/books"
+          :title="ui.navbarCollapsed ? $t('books') : undefined"
         >
           <span class="flex items-center gap-2">
             <AppIcon :icon="BookCopy" />
@@ -31,13 +32,13 @@
         </RouterLink>
       </nav>
       <div class="absolute bottom-0 w-full p-2 border-t border-app">
-        <RouterLink class="block border border-app rounded px-2 py-2 mb-1" to="/me">
+        <RouterLink class="block border border-app rounded px-2 py-2 mb-1" to="/me" :title="ui.navbarCollapsed ? $t('profile') : undefined">
           <span class="flex items-center gap-2">
             <AppIcon :icon="User" />
             <span v-if="!ui.navbarCollapsed">{{ $t('profile') }}</span>
           </span>
         </RouterLink>
-        <button class="w-full border border-app rounded px-2 py-2" @click="logout">
+        <button class="w-full border border-app rounded px-2 py-2" @click="logout" :title="ui.navbarCollapsed ? $t('logout') : undefined">
           <span class="flex items-center gap-2">
             <AppIcon :icon="LogOut" />
             <span v-if="!ui.navbarCollapsed">{{ $t('logout') }}</span>
