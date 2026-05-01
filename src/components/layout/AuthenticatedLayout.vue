@@ -48,38 +48,22 @@
     <div class="flex-1 flex flex-col transition-all duration-300" :style="{ marginLeft: ui.navbarCollapsed ? '80px' : '256px' }">
       <header :class="['h-[60px] bg-panel border-b border-app px-4 flex items-center justify-between', ui.pinHeader ? 'sticky top-0 z-10' : '']">
         <div class="text-muted">{{ route.path }}</div>
-        <div class="flex gap-2">
-          <LanguageToggleButton :lang="ui.lang" :trigger-title="$t('language')" @select="setLang" />
-          <HfIconButton
-            type="boolean"
-            :state="ui.isDarkMode"
-            :action="toggleTheme"
-            :icon-1="Sun"
-            :icon-2="Moon"
-            :ari-label1="'Switch to light mode'"
-            :ari-label2="'Switch to dark mode'"
-            :title-1="$t('light')"
-            :title-2="$t('dark')"
-            :tooltip-text-1="$t('light')"
-            :tooltip-text-2="$t('dark')"
-          />
-          <PinIconButton
-            :state="ui.pinHeader"
-            :action="() => (ui.pinHeader = !ui.pinHeader)"
-            :ari-label1="'Unpin header'"
-            :ari-label2="'Pin header'"
-          />
-        </div>
+        <HeaderActionIcons
+          :lang="ui.lang"
+          :is-dark-mode="ui.isDarkMode"
+          :is-pinned="ui.pinHeader"
+          :on-select-lang="setLang"
+          :on-toggle-theme="toggleTheme"
+          :on-toggle-pin="() => (ui.pinHeader = !ui.pinHeader)"
+        />
       </header>
       <main class="flex-1 p-4 overflow-auto">
         <RouterView />
       </main>
       <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', ui.pinFooter ? 'sticky bottom-0 z-10' : '']">
-        <PinIconButton
-          :state="ui.pinFooter"
-          :action="() => (ui.pinFooter = !ui.pinFooter)"
-          :ari-label1="'Unpin footer'"
-          :ari-label2="'Pin footer'"
+        <FooterActionIcons
+          :is-pinned="ui.pinFooter"
+          :on-toggle-pin="() => (ui.pinFooter = !ui.pinFooter)"
         />
       </footer>
     </div>
@@ -92,12 +76,11 @@ import { RouterView, useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useUiStore } from '@/stores/ui';
 import { useI18n } from 'vue-i18n';
-import { BookCopy, House, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Sun, User } from 'lucide-vue-next';
+import { BookCopy, House, LogOut, PanelLeftClose, PanelLeftOpen, User } from 'lucide-vue-next';
 import AppIcon from '@/components/common/AppIcon.vue';
-import HfIconButton from '@/components/common/HfIconButton.vue';
-import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
 import NavItem from '@/components/layout/NavItem.vue';
-import PinIconButton from '@/components/common/PinIconButton.vue';
+import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
+import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
 
 const route = useRoute();
 const router = useRouter();

@@ -5,38 +5,22 @@
         <img :src="appLogo" alt="Books App logo" class="h-5 w-5 object-contain dark:invert" />
         <span>{{ $t('appTitle') }}</span>
       </strong>
-      <div class="flex gap-2">
-        <LanguageToggleButton :lang="lang" :trigger-title="$t('language')" @select="setLang" />
-        <HfIconButton
-          type="boolean"
-          :state="dark"
-          :action="() => (dark = !dark)"
-          :icon-1="Sun"
-          :icon-2="Moon"
-          :ari-label1="'Switch to light mode'"
-          :ari-label2="'Switch to dark mode'"
-          :title-1="$t('light')"
-          :title-2="$t('dark')"
-          :tooltip-text-1="$t('light')"
-          :tooltip-text-2="$t('dark')"
-        />
-        <PinIconButton
-          :state="pinHeader"
-          :action="() => (pinHeader = !pinHeader)"
-          :ari-label1="'Unpin header'"
-          :ari-label2="'Pin header'"
-        />
-      </div>
+      <HeaderActionIcons
+        :lang="lang"
+        :is-dark-mode="dark"
+        :is-pinned="pinHeader"
+        :on-select-lang="setLang"
+        :on-toggle-theme="() => (dark = !dark)"
+        :on-toggle-pin="() => (pinHeader = !pinHeader)"
+      />
     </header>
     <main class="flex-1 grid place-items-center p-4">
       <slot />
     </main>
     <footer :class="['h-[50px] bg-panel border-t border-app px-4 flex items-center justify-end', pinFooter ? 'sticky bottom-0' : '']">
-      <PinIconButton
-        :state="pinFooter"
-        :action="() => (pinFooter = !pinFooter)"
-        :ari-label1="'Unpin footer'"
-        :ari-label2="'Pin footer'"
+      <FooterActionIcons
+        :is-pinned="pinFooter"
+        :on-toggle-pin="() => (pinFooter = !pinFooter)"
       />
     </footer>
   </div>
@@ -44,11 +28,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Moon, Sun } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
-import HfIconButton from '@/components/common/HfIconButton.vue';
-import LanguageToggleButton from '@/components/common/LanguageToggleButton.vue';
-import PinIconButton from '@/components/common/PinIconButton.vue';
+import HeaderActionIcons from '@/components/common/HeaderActionIcons.vue';
+import FooterActionIcons from '@/components/common/FooterActionIcons.vue';
 
 const { locale } = useI18n();
 const lang = ref(locale.value);
