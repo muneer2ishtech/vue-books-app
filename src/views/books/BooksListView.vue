@@ -2,7 +2,7 @@
   <div class="space-y-3">
     <div class="flex items-center justify-between">
       <h1 class="text-xl font-semibold">Books</h1>
-      <RouterLink to="/books/new" class="bg-blue-600 text-white rounded px-3 py-2">New</RouterLink>
+      <RouterLink to="/books/new" class="bg-blue-600 text-white rounded px-3 py-2">{{ $t('new') }}</RouterLink>
     </div>
 
     <div class="bg-panel border border-app rounded p-3 space-y-3">
@@ -63,12 +63,12 @@
 
       <div class="flex flex-wrap items-center gap-2">
         <select v-model.number="size" @change="loadBooks" class="rounded border-app bg-white/5">
-          <option :value="10">10</option><option :value="20">20</option><option :value="50">50</option><option :value="100">100</option><option :value="10000">Show All</option>
+          <option :value="10">10</option><option :value="20">20</option><option :value="50">50</option><option :value="100">100</option><option :value="10000">{{ $t('showAll') }}</option>
         </select>
-        <button class="border border-app rounded px-2" :disabled="page === 0" @click="prev">Previous</button>
-        <button class="border border-app rounded px-2" :disabled="page + 1 >= totalPages" @click="next">Next</button>
-        <span>Page {{ page + 1 }} of {{ Math.max(totalPages, 1) }}</span>
-        <button class="border border-app rounded px-2" @click="resetFilters">Reset</button>
+        <button class="border border-app rounded px-2" :disabled="page === 0" @click="prev">{{ $t('previous') }}</button>
+        <button class="border border-app rounded px-2" :disabled="page + 1 >= totalPages" @click="next">{{ $t('next') }}</button>
+        <span>{{ $t('pageLabel') }} {{ page + 1 }} {{ $t('ofLabel') }} {{ Math.max(totalPages, 1) }}</span>
+        <button class="border border-app rounded px-2" @click="resetFilters">{{ $t('reset') }}</button>
       </div>
     </div>
 

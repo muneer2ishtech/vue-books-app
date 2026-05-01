@@ -10,9 +10,9 @@
       <input v-model="priceText" placeholder="Price (2 decimals)" class="rounded border-app bg-white/5" />
       <textarea v-model="form.description" maxlength="1000" placeholder="Description" class="rounded border-app bg-white/5 md:col-span-2" />
       <div class="md:col-span-2 space-x-2">
-        <button class="bg-blue-600 text-white rounded px-3 py-2 disabled:opacity-50" :disabled="!canSubmit">Submit</button>
-        <button type="button" class="border border-app rounded px-3 py-2" @click="reset">Reset</button>
-        <button type="button" class="border border-app rounded px-3 py-2" @click="cancel">Cancel</button>
+        <button class="bg-blue-600 text-white rounded px-3 py-2 disabled:opacity-50" :disabled="!canSubmit">{{ $t('submit') }}</button>
+        <button type="button" class="border border-app rounded px-3 py-2" @click="reset">{{ $t('reset') }}</button>
+        <button type="button" class="border border-app rounded px-3 py-2" @click="cancel">{{ $t('cancel') }}</button>
       </div>
     </form>
   </div>

@@ -8,7 +8,7 @@
     <p><strong>Active:</strong> {{ book.isActive ? 'Yes' : 'No' }}</p>
     <p><strong>Description:</strong> {{ book.description || '-' }}</p>
     <div class="space-x-2">
-      <RouterLink :to="`/books/${book.id}/edit`" class="bg-blue-600 text-white rounded px-3 py-2">Edit</RouterLink>
+      <RouterLink :to="`/books/${book.id}/edit`" class="bg-blue-600 text-white rounded px-3 py-2">{{ $t('edit') }}</RouterLink>
       <button class="bg-red-600 text-white rounded px-3 py-2" @click="open = true">Delete</button>
     </div>
   </div>

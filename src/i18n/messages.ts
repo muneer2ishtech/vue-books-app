@@ -26,7 +26,18 @@ export default {
     signInFailed: 'Invalid email or password',
     logout: 'Logout',
     profile: 'My Profile',
-    notFound: 'Page not found'
+    notFound: 'Page not found',
+    homeDescription: 'Books managing application using Vue JS',
+    previous: 'Previous',
+    next: 'Next',
+    pageLabel: 'Page',
+    ofLabel: 'of',
+    reset: 'Reset',
+    showAll: 'Show All',
+    new: 'New',
+    edit: 'Edit',
+    cancel: 'Cancel',
+    submit: 'Submit'
   },
   fi: {
     appTitle: 'Kirjasovellus',
@@ -55,7 +66,18 @@ export default {
     signInFailed: 'Vaarat tunnukset',
     logout: 'Kirjaudu ulos',
     profile: 'Profiili',
-    notFound: 'Sivua ei loytynyt'
+    notFound: 'Sivua ei loytynyt',
+    homeDescription: 'Kirjojen hallintasovellus, tehty Vue JS:lla',
+    previous: 'Edellinen',
+    next: 'Seuraava',
+    pageLabel: 'Sivu',
+    ofLabel: '/',
+    reset: 'Nollaa',
+    showAll: 'Nayta kaikki',
+    new: 'Uusi',
+    edit: 'Muokkaa',
+    cancel: 'Peruuta',
+    submit: 'Laheta'
   },
   sv: {
     appTitle: 'Bokapp',
@@ -84,6 +106,17 @@ export default {
     signInFailed: 'Felaktig e-post eller losenord',
     logout: 'Logga ut',
     profile: 'Min profil',
-    notFound: 'Sidan hittades inte'
+    notFound: 'Sidan hittades inte',
+    homeDescription: 'Bokhanteringsapplikation med Vue JS',
+    previous: 'Foregaende',
+    next: 'Nasta',
+    pageLabel: 'Sida',
+    ofLabel: 'av',
+    reset: 'Aterstall',
+    showAll: 'Visa alla',
+    new: 'Ny',
+    edit: 'Redigera',
+    cancel: 'Avbryt',
+    submit: 'Skicka'
   }
 };
