@@ -1,25 +1,22 @@
-# react-books-app
+# vue-books-app
 Books managing application using Vue
 
 ##
 [GIT](https://github.com/muneer2ishtech/vue-books-app)
 
 ## Tech stack
-- Vue
-- ViteJS
-- Node: v24.15.0
 - Vue 3
-- ViteJS
-- Pinia - State management
-- Vue Router v4 
-- TanStack Table v8 - Headless data grid
+- Vite
+- Node: v24.15.0
+- Pinia — state management
+- Vue Router v4
+- TanStack Table v8 — headless data grid
 - Axios
 - Tailwind CSS
 - vee-validate + Zod
-- Vue i18n v9
+- Vue I18n v11
 - Lucide Icons
 - TypeScript
-- Node: v24.15.0
 
 ## Features
 
@@ -31,7 +28,7 @@ Books managing application using Vue
     - 📊 **Smart Sorting** - Multi-column sorting (additive)
     - 📄 **Server-side Pagination** - Page size selector (10/20/50/100) + "Show All"
 - 🌍 **Internationalization**
-    - `i18n` with English & Finnish languages
+    - `i18n` with English, Finnish, and Swedish
 - 📱 **Responsive**
     - Mobile/Tablet/Desktop breakpoints
     - Card layout on small screens (table transforms to stacked cards)
@@ -68,5 +65,5 @@ npm run dev
 
 ## Build
 ```
-npm build
+npm run build
 ```
