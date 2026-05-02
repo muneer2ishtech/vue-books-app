@@ -7,7 +7,7 @@ Books managing application using Vue
 ## Tech stack
 - Vue 3
 - Vite
-- Node: v24.15.0
+- Node v24 LTS
 - Pinia — state management
 - Vue Router v4
 - TanStack Table v8 — headless data grid
