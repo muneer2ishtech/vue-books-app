@@ -1,0 +1,22 @@
+# dependencies & output
+node_modules
+dist
+dist-ssr
+
+# git & IDE
+.git
+.gitignore
+**/.DS_Store
+.idea
+.vscode
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Env files are intentionally included so Docker builds can use mode-specific .env files.
+
+# misc
+*.md
+.cursor

@@ -1,7 +1,7 @@
 {
   "name": "vue-books-app",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "description": "Book management application built with Vue.js",
   "engines": {
