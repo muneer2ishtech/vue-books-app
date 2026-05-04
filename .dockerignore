@@ -15,9 +15,7 @@ dist-ssr
 npm-debug.log*
 pnpm-debug.log*
 
-# env (use: docker build --build-arg VITE_API_BASE_URL=https://api.example.com .)
-.env
-.env.*
+# Env files are intentionally included so Docker builds can use mode-specific .env files.
 
 # misc
 *.md
