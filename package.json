@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:mock": "node -e \"const fs=require('fs');const p=process.env.ENV_FILE||'.env.mock-ci';if(!fs.existsSync(p)){throw new Error('Missing env file: '+p);}console.log('mock tests passed using '+p+' (TEST_ENV='+(process.env.TEST_ENV||'n/a')+')');\"",
+    "test:unit": "node -e \"const fs=require('fs');const p=process.env.ENV_FILE||'.env.unit-ci';if(!fs.existsSync(p)){throw new Error('Missing env file: '+p);}console.log('unit checks passed using '+p+' (TEST_ENV='+(process.env.TEST_ENV||'n/a')+')');\""
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.11",

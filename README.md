@@ -64,6 +64,34 @@ npm install
 npm run dev
 ```
 
+### Local Test Run
+
+- Unit checks (default env file fallback is `.env.unit-ci`)
+
+```bash
+npm run test:unit
+```
+
+- Mock checks (default env file fallback is `.env.mock-ci`)
+
+```bash
+npm run test:mock
+```
+
+- Explicit env selection (PowerShell)
+
+```powershell
+$env:TEST_ENV='unit-ci'; $env:ENV_FILE='.env.unit-ci'; npm run test:unit
+$env:TEST_ENV='mock-ci'; $env:ENV_FILE='.env.mock-ci'; npm run test:mock
+```
+
+- Explicit env selection (bash)
+
+```bash
+TEST_ENV=unit-ci ENV_FILE=.env.unit-ci npm run test:unit
+TEST_ENV=mock-ci ENV_FILE=.env.mock-ci npm run test:mock
+```
+
 ## Build
 ### Local Build
 
