@@ -77,12 +77,6 @@ COPY --from=build /app/dist /usr/share/nginx/html
 COPY --from=build /tmp/build_env /tmp/build_env
 COPY --from=build /tmp/app_version /tmp/app_version
 
-RUN set -eu; \
-  APP_VERSION="$(cat /tmp/app_version)"; \
-
-LABEL org.opencontainers.image.title="vue-books-app"
-LABEL org.opencontainers.image.version="${APP_VERSION}"
-
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
