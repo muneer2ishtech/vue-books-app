@@ -11,18 +11,21 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test:mock": "node -e \"const fs=require('fs');const p=process.env.ENV_FILE||'.env.mock-ci';if(!fs.existsSync(p)){throw new Error('Missing env file: '+p);}console.log('mock tests passed using '+p+' (TEST_ENV='+(process.env.TEST_ENV||'n/a')+')');\"",
-    "test:unit": "node -e \"const fs=require('fs');const p=process.env.ENV_FILE||'.env.unit-ci';if(!fs.existsSync(p)){throw new Error('Missing env file: '+p);}console.log('unit checks passed using '+p+' (TEST_ENV='+(process.env.TEST_ENV||'n/a')+')');\""
+    "test:mock": "vitest run tests/mock",
+    "test:unit": "vitest run tests/unit"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.11",
     "@types/node": "^25.6.0",
     "@vitejs/plugin-vue": "^6.0.6",
+    "@vue/test-utils": "^2.4.10",
     "autoprefixer": "^10.5.0",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.10",
     "tailwindcss": "^3.4.18",
     "typescript": "~6.0.2",
     "vite": "^8.0.10",
+    "vitest": "^4.1.5",
     "vue-tsc": "^3.2.7"
   },
   "dependencies": {

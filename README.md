@@ -66,13 +66,13 @@ npm run dev
 
 ### Local Test Run
 
-- Unit checks (default env file fallback is `.env.unit-ci`)
+- Unit tests
 
 ```bash
 npm run test:unit
 ```
 
-- Mock checks (default env file fallback is `.env.mock-ci`)
+- Mock tests
 
 ```bash
 npm run test:mock
@@ -91,6 +91,10 @@ $env:TEST_ENV='mock-ci'; $env:ENV_FILE='.env.mock-ci'; npm run test:mock
 TEST_ENV=unit-ci ENV_FILE=.env.unit-ci npm run test:unit
 TEST_ENV=mock-ci ENV_FILE=.env.mock-ci npm run test:mock
 ```
+
+- Notes
+  - Current test scripts (`test:unit`, `test:mock`) run with Vitest and do not require backend.
+  - `TEST_ENV`/`ENV_FILE` are optional metadata variables for CI/local command parity.
 
 ## Build
 ### Local Build
@@ -171,8 +175,8 @@ docker build --build-arg BUILD_ENV=development -t vue-books-app:dev .
 ```
 
 - Fresh dependency install for non-production builds:
-    - For non-production builds, you can force a fresh dependency install (by first deleting package-lock.json)
- | - Build will fail if `FRESH_INSTALL=true` for production builds (build will fail). Production builds require package-lock.json for reproducible installs.
+    - For non-production builds, you can force a fresh dependency install (by first deleting `package-lock.json`).
+    - Build fails if `FRESH_INSTALL=true` for production. Production builds require `package-lock.json` for reproducible installs.
 
 ```
 docker build \
