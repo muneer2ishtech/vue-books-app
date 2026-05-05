@@ -1,0 +1,37 @@
+name: Branch CI
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+
+jobs:
+  ci-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run uni tests
+        env:
+          TEST_ENV: unit-ci
+          ENV_FILE: .env.unit-ci
+        run: npm run test:unit
+
+      - name: Run mock tests
+        env:
+          TEST_ENV: mock-ci
+          ENV_FILE: .env.mock-ci
+        run: npm run test:mock
